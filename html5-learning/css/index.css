@@ -1,0 +1,40 @@
+/**
+ * User: guoyao
+ * Time: 11/26/11 2:00 PM
+ */
+
+#navigator {
+    width: 200px;
+    left: 5px;
+    top: 5px;
+    bottom: 5px;
+    padding: 5px;
+    position: absolute;
+    border: 1px solid #000000;
+}
+
+#navigator div {
+    width: 100%;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
+}
+
+#navigator div a {
+    display: block;
+    padding: 3px 8px;
+}
+
+#shell {
+    left: 220px;
+    right: 5px;
+    top: 5px;
+    bottom: 5px;
+    padding: 5px;
+    position: absolute;
+    border: 1px solid #000000;
+}
+
+.selected {
+    background-color: #eeeeee;
+}

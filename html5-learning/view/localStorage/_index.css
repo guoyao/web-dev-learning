@@ -1,0 +1,14 @@
+/**
+ * User: guoyao
+ * Time: 11/26/11 2:00 PM
+ */
+
+li {
+    background-color: #eeeeee;
+    margin: 5px 0px;
+    padding: 2px 5px;
+    list-style: decimal;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
+}
