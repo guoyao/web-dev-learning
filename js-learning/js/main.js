@@ -6,10 +6,17 @@
  * To change this template use File | Settings | File Templates.
  */
 
-for (var i = 1; i < 4; i++) {
-    (function (ii) {
-        setTimeout(function () {
-            console.log(ii);
-        }, 0);
-    })(i);
+function $(id) {
+    return document.getElementById(id);
 }
+
+window.onload = function () {
+    for (var i = 1; i < 6; i++) {
+        $("button" + i).addEventListener("click", function (ii) {
+            return function () {
+                alert(ii);
+            }
+        }(i));
+    }
+};
+
