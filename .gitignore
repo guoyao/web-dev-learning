@@ -5,7 +5,15 @@
 #   git config --global core.excludesfile ~/.gitignore_global
 
 
-/**/.DS_Store
-/**/.idea
+.DS_Store
+.idea
 *.iml
-/**/target
+out
+dist
+build
+target
+.gradle
+.classpath
+.project
+.settings
+bin
