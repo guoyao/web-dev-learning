@@ -21,18 +21,6 @@ var GLOBAL = {
         return value == "";
     },
 
-    $: function(value) {
-        var result;
-        value = value.trim();
-        if (value.indexOf("#") == 0) {
-            result = document.getElementById(value.substring(1));
-        }
-        else {
-            result = document.getElementsByTagName(value);
-        }
-        return result;
-    },
-
     getStoredArray: function(key) {
         var playlistArray = localStorage.getItem(key);
         return (playlistArray == null || GLOBAL.isEmptyString(playlistArray) ||

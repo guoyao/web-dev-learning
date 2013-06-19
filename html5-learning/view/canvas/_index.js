@@ -4,10 +4,10 @@
  */
 
 (function () {
-    var canvas = GLOBAL.$("#canvas"),
-        startButton = GLOBAL.$("#startButton"),
-        pauseButton = GLOBAL.$("#pauseButton"),
-        stopButton = GLOBAL.$("#stopButton"),
+    var canvas = slimJs.$("#canvas"),
+        startButton = slimJs.$("#startButton"),
+        pauseButton = slimJs.$("#pauseButton"),
+        stopButton = slimJs.$("#stopButton"),
         taskId,
         canvasWidth = canvas.width,
         canvasHeight = canvas.height,

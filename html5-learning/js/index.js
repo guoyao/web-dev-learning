@@ -34,7 +34,7 @@ function loadExample(name) {
     var css = document.createElement("link");
     css.setAttribute("href", "view/" + name + "/_index.css");
     css.setAttribute("rel", "stylesheet");
-    GLOBAL.$("head")[0].appendChild(css);
+    slimJs.$("head")[0].appendChild(css);
     $("#shell").load(GLOBAL.getRandomedUrl("view/" + name + "/_index.html"), function () {
         $.getScript("view/" + name + "/_index.js");
     });

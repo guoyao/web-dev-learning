@@ -15,6 +15,6 @@ function updateSales(sales) {
         var div = document.createElement("div");
         div.setAttribute("class", "saleItem");
         div.innerHTML = sale.name + " sold " + sale.sales + " gumballs";
-        GLOBAL.$("#sales").appendChild(div);
+        slimJs.$("#sales").appendChild(div);
     }
 }

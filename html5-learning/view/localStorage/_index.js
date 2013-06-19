@@ -10,28 +10,28 @@ function init() {
     for (var i = 0; i < playlistArray.length; i++) {
         var li = document.createElement("li");
         li.innerHTML = playlistArray[i];
-        GLOBAL.$("#songList").appendChild(li);
+        slimJs.$("#songList").appendChild(li);
     }
 
-    GLOBAL.$("#addSongButton").onclick = addSong;
+    slimJs.$("#addSongButton").onclick = addSong;
 
-    GLOBAL.$("#saveButton").onclick = save;
+    slimJs.$("#saveButton").onclick = save;
 
-    GLOBAL.$("#clearButton").onclick = clear;
+    slimJs.$("#clearButton").onclick = clear;
 }
 
 function addSong() {
-    var songName = GLOBAL.$("#songNameTextInput").value;
+    var songName = slimJs.$("#songNameTextInput").value;
     if (!GLOBAL.isEmptyString(songName.trim())) {
         var li = document.createElement("li");
         li.innerHTML = songName;
-        GLOBAL.$("#songList").appendChild(li);
+        slimJs.$("#songList").appendChild(li);
     }
 }
 
 function save() {
     var playlistArray = [];
-    var songs = GLOBAL.$("li");
+    var songs = slimJs.$("li");
     for (var i = 0; i < songs.length; i++) {
         playlistArray.push(songs[i].innerHTML);
     }
@@ -40,5 +40,5 @@ function save() {
 
 function clear() {
     localStorage.setItem("playlist", JSON.stringify(null));
-    GLOBAL.$("#songList").innerHTML = "";
+    slimJs.$("#songList").innerHTML = "";
 }

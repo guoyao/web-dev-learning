@@ -24,11 +24,11 @@ init();
 function init() {
     document.title = "Wherever you go, there you are";
     if (navigator.geolocation) {
-        GLOBAL.$("#watchButton").onclick = watchLocation;
-        GLOBAL.$("#clearWatchButton").onclick = clearWatch;
+        slimJs.$("#watchButton").onclick = watchLocation;
+        slimJs.$("#clearWatchButton").onclick = clearWatch;
     }
     else {
-        GLOBAL.$("#geolocationDiv").innerHTML = "Oops, no geolocation support";
+        slimJs.$("#geolocationDiv").innerHTML = "Oops, no geolocation support";
     }
 }
 
@@ -50,8 +50,8 @@ function displayLocation(position) {
     targetPosition = position;
     var latitude = position.coords.latitude;
     var longitude = position.coords.longitude;
-    GLOBAL.$("#geolocationDiv").innerHTML = "You are at Latitude: " + latitude + ", Longitude: " + longitude;
-    GLOBAL.$("#geolocationDiv").innerHTML += " (with " + position.coords.accuracy + " meters accuracy)";
+    slimJs.$("#geolocationDiv").innerHTML = "You are at Latitude: " + latitude + ", Longitude: " + longitude;
+    slimJs.$("#geolocationDiv").innerHTML += " (with " + position.coords.accuracy + " meters accuracy)";
 
     //the geolocation of Chang Sha China
     var targetCoords = {
@@ -59,7 +59,7 @@ function displayLocation(position) {
         longitude: 112.5842
     };
     var km = computeDistance(position.coords, targetCoords);
-    GLOBAL.$("#distanceDiv").innerHTML = "You are " + km + " km from the Chang Sha China";
+    slimJs.$("#distanceDiv").innerHTML = "You are " + km + " km from the Chang Sha China";
 
     if(map == null) {
         firstPosition = position;
@@ -69,7 +69,7 @@ function displayLocation(position) {
         }
     }
     else {
-        GLOBAL.$("#moveDistanceDiv").innerHTML = Math.abs(computeDistance(
+        slimJs.$("#moveDistanceDiv").innerHTML = Math.abs(computeDistance(
             firstPosition.coords, position.coords));
         scrollMapToPosition(position.coords);
     }
@@ -91,7 +91,7 @@ function displayError(error) {
         watchId = navigator.geolocation.watchPosition(displayLocation,
                     displayError, geolocationOptions);
     }
-    GLOBAL.$("#geolocationDiv").innerHTML = errorMessage;
+    slimJs.$("#geolocationDiv").innerHTML = errorMessage;
 }
 
 function computeDistance(startCoords, destCoords) {
@@ -118,7 +118,7 @@ function showMap() {
         center:googleLatAndLong,
         mapTypeId:google.maps.MapTypeId.ROADMAP
     };
-    map = new google.maps.Map(GLOBAL.$("#mapDiv"), mapOptions);
+    map = new google.maps.Map(slimJs.$("#mapDiv"), mapOptions);
 
     var title = "Your Location";
     var content = "You are here: " + targetPosition.coords.latitude + ", " + targetPosition.coords.longitude;

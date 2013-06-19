@@ -4,7 +4,7 @@
  */
 
 (function () {
-    var video = GLOBAL.$("#video");
+    var video = slimJs.$("#video");
     video.addEventListener("canplaythrough", loadComplete);
 
     function loadComplete() {
