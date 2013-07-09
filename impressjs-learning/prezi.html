@@ -1,0 +1,53 @@
+<!--
+  User: guoyao
+  Time: 07-09-2013 11:23
+  Blog: http://www.guoyao.me
+-->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=1024" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <title>Impress.js Experiment Project</title>
+    <link rel="stylesheet" href="css/impress-demo.css"/>
+    <style type="text/css">
+        .text {
+            color: #004f75;
+        }
+    </style>
+</head>
+<body>
+<div id="impress-not-supported">
+    <div class="fallback-message">
+        <p>你的浏览器<b>不支持</b> impress.js, 所以当前展示的是简化版。</p>
+        <p>为了获得更好的体验，请使用最新的 <b>Chrome</b>, <b>Safari</b> 或者 <b>Firefox</b> 浏览器。</p>
+    </div>
+</div>
+<div id="impress">
+    <div id="canvas1" class="step slide" data-x="-6.704747319638875" data-y="-1.340949463927775" data-rotate="0" data-scale="6.776803203356905">
+        <div class="text" style="position: absolute; left: 200px; top: auto; height: 30px;">
+            bcc
+        </div>
+    </div>
+    <div id="canvas2" class="step slide" data-x="7323" data-y="-2160.45" data-rotate="-90" data-scale="2.7365376744984076">
+        This is slide 2
+    </div>
+</div>
+<script src="js/impress.js"></script>
+<script src="js/raphael.js"></script>
+<!--<script src="js/jquery-2.0.3.js"></script>-->
+<script>
+    impress().init();
+
+    window.onload = function () {
+        var paper = Raphael("canvas1", 900, 700);
+        paper.clear();
+//        paper.rect(0, 0, 780, 620).attr({fill: "#000000", stroke: "none"});
+        paper.circle(390, 310, 290).attr({stroke: "#739eb3", "stroke-width": 40});
+//        paper.circle(320, 240, 60).animate({fill: "#223fa3", stroke: "#000", "stroke-width": 80, "stroke-opacity": 0.5}, 2000);
+    };
+</script>
+</body>
+</html>
