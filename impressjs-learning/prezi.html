@@ -13,8 +13,13 @@
     <title>Impress.js Experiment Project</title>
     <link rel="stylesheet" href="css/impress-demo.css"/>
     <style type="text/css">
-        .text {
+        .slideText {
+            position: absolute;
             color: #004f75;
+            font-weight: bold;
+            font-size: 60px;
+            left: 378px;
+            top: 305px;
         }
     </style>
 </head>
@@ -26,27 +31,31 @@
     </div>
 </div>
 <div id="impress">
-    <div id="canvas1" class="step slide" data-x="-6.704747319638875" data-y="-1.340949463927775" data-rotate="0" data-scale="6.776803203356905">
-        <div class="text" style="position: absolute; left: 200px; top: auto; height: 30px;">
+    <div id="slide1" class="step" data-x="-6.704747319638875" data-y="-1.340949463927775" data-rotate="0" data-scale="6.776803203356905">
+        <p class="slideText" style="text-align: center;">
             bcc
-        </div>
+        </p>
     </div>
-    <div id="canvas2" class="step slide" data-x="7323" data-y="-2160.45" data-rotate="-90" data-scale="2.7365376744984076">
-        This is slide 2
+    <div id="slide2" class="step" data-x="7323" data-y="-2160.45" data-rotate="-90" data-scale="2.7365376744984076">
+        <p class="slideText">
+            bcc
+        </p>
     </div>
+    <div id="overview" class="step" data-x="3000" data-y="1500" data-scale="10"/>
 </div>
 <script src="js/impress.js"></script>
 <script src="js/raphael.js"></script>
-<!--<script src="js/jquery-2.0.3.js"></script>-->
 <script>
     impress().init();
 
     window.onload = function () {
-        var paper = Raphael("canvas1", 900, 700);
+        var paper = Raphael("slide1", 780, 620);
         paper.clear();
-//        paper.rect(0, 0, 780, 620).attr({fill: "#000000", stroke: "none"});
         paper.circle(390, 310, 290).attr({stroke: "#739eb3", "stroke-width": 40});
-//        paper.circle(320, 240, 60).animate({fill: "#223fa3", stroke: "#000", "stroke-width": 80, "stroke-opacity": 0.5}, 2000);
+        paper = Raphael("slide2", 780, 620);
+        paper.clear();
+        paper.path("M 0 0 L 150 0 L 150 50 L 50 50 L 50 570 L 150 570 L 150 620 L 0 620 Z").attr({stroke: "none", fill: "#d4d4d4"});
+        paper.path("M 780 0 L 630 0 L 630 50 L 730 50 L 730 570 L 630 570 L 630 620 L 780 620 Z").attr({stroke: "none", fill: "#d4d4d4"});
     };
 </script>
 </body>
