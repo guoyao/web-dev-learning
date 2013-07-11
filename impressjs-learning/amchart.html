@@ -1,68 +1,18 @@
 <!--
   User: guoyao
-  Time: 07-09-2013 11:23
+  Time: 07-11-2013 11:15
   Blog: http://www.guoyao.me
 -->
 
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=1024" />
-    <meta name="apple-mobile-web-app-capable" content="yes" />
-    <title>Impress.js Experiment Project</title>
-    <link rel="stylesheet" href="css/impress-demo.css"/>
-    <style type="text/css">
-        .slideText {
-            position: absolute;
-            color: #004f75;
-            font-weight: bold;
-            font-size: 60px;
-            left: 378px;
-            top: 305px;
-        }
-    </style>
+    <title></title>
 </head>
 <body>
-<div id="impress-not-supported">
-    <div class="fallback-message">
-        <p>你的浏览器<b>不支持</b> impress.js, 所以当前展示的是简化版。</p>
-        <p>为了获得更好的体验，请使用最新的 <b>Chrome</b>, <b>Safari</b> 或者 <b>Firefox</b> 浏览器。</p>
-    </div>
-</div>
-<div id="impress">
-    <div id="slide1" class="step" data-x="-6.704747319638875" data-y="-1.340949463927775" data-rotate="0" data-scale="6.776803203356905">
-        <p class="slideText" style="text-align: center;">
-            bcc
-        </p>
-    </div>
-    <div id="slide2" class="step" data-x="7323" data-y="-2160.45" data-rotate="-90" data-scale="2.7365376744984076">
-        <p class="slideText">
-            bcc
-        </p>
-    </div>
-    <div id="slide3" class="step" data-x="12323" data-y="-5160.45" data-rotate="0" data-scale="2.7365376744984076">
-        <div id="chartdiv" style="width: 100%; height: 355px;"></div>
-    </div>
-    <!--<div id="overview" class="step" data-x="3000" data-y="1500" data-scale="10"/>-->
-    <div id="overview" class="step" data-scale="10"/>
-</div>
-<script src="js/impress.js"></script>
-<script src="js/raphael.js"></script>
+<div id="chartdiv" style="width: 100%; height: 355px;"></div>
 <script src="http://www.amcharts.com/lib/amcharts.js" type="text/javascript"></script>
-<script>
-    impress().init();
-
-    window.onload = function () {
-        var paper = Raphael("slide1", 780, 620);
-        paper.clear();
-        paper.circle(390, 310, 290).attr({stroke: "#739eb3", "stroke-width": 40});
-        paper = Raphael("slide2", 780, 620);
-        paper.clear();
-        paper.path("M 0 0 L 150 0 L 150 50 L 50 50 L 50 570 L 150 570 L 150 620 L 0 620 Z").attr({stroke: "none", fill: "#d4d4d4"});
-        paper.path("M 780 0 L 630 0 L 630 50 L 730 50 L 730 570 L 630 570 L 630 620 L 780 620 Z").attr({stroke: "none", fill: "#d4d4d4"});
-    };
-
+<script type="text/javascript">
     var chart;
 
     var chartData = [{
