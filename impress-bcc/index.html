@@ -1,0 +1,61 @@
+<!--
+  User: guoyao
+  Time: 07-15-2013 15:13
+  Blog: http://www.guoyao.me
+-->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>BCC</title>
+    <link rel="stylesheet" type="text/css" href="css/impress-bcc.css"/>
+    <link rel="stylesheet" type="text/css" href="css/main.css"/>
+</head>
+<body>
+    <div id="impress-not-supported">
+        <div class="fallback-message">
+            <p>你的浏览器<b>不支持</b> impress-bcc.js, 所以当前展示的是简化版。</p>
+            <p>为了获得更好的体验，请使用最新的 <b>Chrome</b>, <b>Safari</b> 或者 <b>Firefox</b> 浏览器。</p>
+        </div>
+    </div>
+    <div id="impress">
+        <div class="step">
+            <object data="resources/01.svg" type="image/svg+xml">
+                <embed src="resources/01.svg" type="image/svg+xml"/>
+            </object>
+        </div>
+        <div class="step" data-x="900" data-next="4" data-rotate-x="90">
+            <object data="resources/02.svg" type="image/svg+xml">
+                <embed src="resources/02.svg" type="image/svg+xml"/>
+            </object>
+        </div>
+        <div class="step" data-x="1800" data-rotate-x="90">
+            <object data="resources/03.svg" type="image/svg+xml">
+                <embed src="resources/03.svg" type="image/svg+xml"/>
+            </object>
+        </div>
+        <div class="step" data-x="2700">
+            <object data="resources/04.svg" type="image/svg+xml">
+                <embed src="resources/04.svg" type="image/svg+xml"/>
+            </object>
+        </div>
+        <div class="step" data-x="3600" data-y="375" data-prev="1">
+            <object data="resources/05.svg" type="image/svg+xml">
+                <embed src="resources/05.svg" type="image/svg+xml"/>
+            </object>
+        </div>
+        <div class="step" data-x="4500" data-rotate-x="90" data-rotate-y="90">
+            <object data="resources/06.svg" type="image/svg+xml">
+                <embed src="resources/06.svg" type="image/svg+xml"/>
+            </object>
+        </div>
+        <!--<div id="overview" class="step" data-scale="2"/>-->
+    </div>
+
+    <script type="text/javascript" src="scripts/impress-bcc.js"></script>
+    <script type="text/javascript">
+        impress().init();
+    </script>
+</body>
+</html>

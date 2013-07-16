@@ -40,7 +40,7 @@
                 
                 var ucProp  = prop.charAt(0).toUpperCase() + prop.substr(1),
                     props   = (prop + ' ' + prefixes.join(ucProp + ' ') + ucProp).split(' ');
-
+                
                 memory[ prop ] = null;
                 for ( var i in props ) {
                     if ( style[ props[i] ] !== undefined ) {
@@ -55,7 +55,7 @@
         };
     
     })();
-
+    
     // `arraify` takes an array-like object and turns it into real Array
     // to make all the Array.prototype goodness available.
     var arrayify = function ( a ) {
@@ -550,20 +550,26 @@
         
         // `prev` API function goes to previous step (in document order)
         var prev = function () {
-            var prev = steps.indexOf( activeStep ) - 1;
+            var prev = activeStep.dataset.prev;
+            if(!prev || isNaN(prev)) {
+                prev = steps.indexOf( activeStep ) - 1;
+            }
             prev = prev >= 0 ? steps[ prev ] : steps[ steps.length-1 ];
-            
             return goto(prev);
         };
         
         // `next` API function goes to next step (in document order)
         var next = function () {
-            var next = steps.indexOf( activeStep ) + 1;
+            var next = activeStep.dataset.next;
+            if(!next || isNaN(next)) {
+                next = steps.indexOf( activeStep ) + 1;
+            }
             next = next < steps.length ? steps[ next ] : steps[ 0 ];
-            
+//            stepsData["impress-" + activeStep.id].scale = toNumber(activeStep.dataset.scale, 1);
+//            stepsData["impress-" + next.id].scale = toNumber(next.dataset.scale, 1) * 0.67;
             return goto(next);
         };
-        
+
         // Adding some useful classes to step elements.
         //
         // All the steps that have not been shown yet are given `future` class.
