@@ -296,6 +296,7 @@
         // `initStep` initializes given step element by reading data from its
         // data attributes and setting correct styles.
         var initStep = function ( el, idx ) {
+//            el.dataset.x = window.innerWidth * idx;
             var data = el.dataset,
                 step = {
                     translate: {
@@ -317,8 +318,10 @@
             }
             
             stepsData["impress-" + el.id] = step;
-            
+
             css(el, {
+//                width: window.innerWidth + "px",
+//                height: window.innerHeight + "px",
                 position: "absolute",
                 transform: "translate(-50%,-50%)" +
                            translate(step.translate) +

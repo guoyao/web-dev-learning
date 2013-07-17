@@ -20,42 +20,40 @@
         </div>
     </div>
     <div id="impress">
-        <div class="step">
-            <object data="resources/01.svg" type="image/svg+xml">
-                <embed src="resources/01.svg" type="image/svg+xml"/>
+        <div class="step" data-scale="4" data-rotate-z="45">
+            <object id="svg01" data="resources/01.svg" type="image/svg+xml" width="100%" height="100%">
+                <embed src="resources/01.svg" type="image/svg+xml" width="100%" height="100%"/>
             </object>
         </div>
-        <div class="step" data-x="900" data-next="4" data-rotate-x="90">
-            <object data="resources/02.svg" type="image/svg+xml">
-                <embed src="resources/02.svg" type="image/svg+xml"/>
+        <div class="step" data-x="3600" data-next="4">
+            <object data="resources/02.svg" type="image/svg+xml" width="100%" height="100%">
+                <embed src="resources/02.svg" type="image/svg+xml" width="100%" height="100%"/>
             </object>
         </div>
-        <div class="step" data-x="1800" data-rotate-x="90">
-            <object data="resources/03.svg" type="image/svg+xml">
-                <embed src="resources/03.svg" type="image/svg+xml"/>
+        <div class="step" data-x="4500">
+            <object data="resources/03.svg" type="image/svg+xml" width="100%" height="100%">
+                <embed src="resources/03.svg" type="image/svg+xml" width="100%" height="100%"/>
             </object>
         </div>
-        <div class="step" data-x="2700">
-            <object data="resources/04.svg" type="image/svg+xml">
-                <embed src="resources/04.svg" type="image/svg+xml"/>
+        <div class="step" data-x="5400">
+            <object data="resources/04.svg" type="image/svg+xml" width="100%" height="100%">
+                <embed src="resources/04.svg" type="image/svg+xml" width="100%" height="100%"/>
             </object>
         </div>
-        <div class="step" data-x="3600" data-y="375" data-prev="1">
-            <object data="resources/05.svg" type="image/svg+xml">
-                <embed src="resources/05.svg" type="image/svg+xml"/>
+        <div class="step" data-x="6300" data-y="375" data-prev="1">
+            <object data="resources/05.svg" type="image/svg+xml" width="100%" height="100%">
+                <embed src="resources/05.svg" type="image/svg+xml" width="100%" height="100%"/>
             </object>
         </div>
-        <div class="step" data-x="4500" data-rotate-x="90" data-rotate-y="90">
-            <object data="resources/06.svg" type="image/svg+xml">
-                <embed src="resources/06.svg" type="image/svg+xml"/>
+        <div class="step" data-x="15000" data-scale="10" data-rotate-z="90">
+            <object data="resources/06.svg" type="image/svg+xml" width="100%" height="100%">
+                <embed src="resources/06.svg" type="image/svg+xml" width="100%" height="100%"/>
             </object>
         </div>
-        <!--<div id="overview" class="step" data-scale="2"/>-->
+        <!--<div id="overview" class="step" data-scale="10"/>-->
     </div>
 
     <script type="text/javascript" src="scripts/impress-bcc.js"></script>
-    <script type="text/javascript">
-        impress().init();
-    </script>
+    <script type="text/javascript" src="scripts/main.js"></script>
 </body>
 </html>
