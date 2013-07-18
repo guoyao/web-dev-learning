@@ -125,11 +125,10 @@
     };
 
     (function () {
-        var array = [1, 2, 3];
-        console.log(arrayify(array));
-        array.forEach(function(value, index) {
-            console.log(value, index);
-        })
+        var test = function () {
+            console.log(arguments);
+        };
+        test(1, "qq", "qwe");
     })();
 
 })(window, document);
