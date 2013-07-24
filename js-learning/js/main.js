@@ -7,6 +7,7 @@
  */
 
 (function (window, document) {
+    alert(Prototype.Browser.Opera);
     var $ = function (id) {
         return document.getElementById(id);
     };
