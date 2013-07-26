@@ -3,12 +3,24 @@
  * Time: 07-24-2013 18:10
  * Blog: http://www.guoyao.me
  */
+/**
+ * User: guoyao
+ * Time: 07-26-2013 13:47
+ * Blog: http://www.guoyao.me
+ */
 html,
 body {
   text-align: center;
   height: 100%;
   font-family: arial;
   font-size: 12px;
+}
+a {
+  text-decoration: none;
+}
+a:focus,
+a:active {
+  outline: none;
 }
 #main {
   width: 1000px;

@@ -5,6 +5,11 @@
  */
 
 (function (document, $) {
+    var Env = {
+        production: false,
+        demosDirectory: "demos"
+    };
+
     var modules = [
         new Module("Dropdown Menu", "dropdown-menu"),
         new Module("Tab Navigator", "tab-navigator")
@@ -15,21 +20,37 @@
         this.artifact = artifact;
     }
 
-    var randomQueryString = function (value) {
-        return value + "?" + new Date().getTime();
+    var getDemoResourceUrl = function (artifact, resource) {
+        var url = Env.demosDirectory + "/" + artifact + "/" + resource;
+        if (!Env.production) {
+            url += "?" + new Date().getTime();
+        }
+        return url;
     };
 
-    var loadDemo = function (url) {
-        $('<link rel="stylesheet" href="' + url + '/_index.css"/>').appendTo($("head")[0]);
-        $("#shell").load(randomQueryString(url + "/_index.html"), function () {
-            $.getScript(url + "/_index.js");
+    var loadDemo = function (artifact) {
+        $('<link rel="stylesheet" href="' + getDemoResourceUrl(artifact, "_index.css") + '" artifact="' + artifact + '"/>').appendTo($("head")[0]);
+        $("#shell").load(getDemoResourceUrl(artifact, "_index.html"), function () {
+            $.getScript(getDemoResourceUrl(artifact, "_index.js"));
+        });
+    };
+
+    /**
+     * unload css and js
+     * @param artifact string
+     */
+    var unloadDemo = function (artifact) {
+        $("link").each(function () {
+            if ($(this).attr("artifact") == artifact) {
+                $(this).remove();
+            }
         });
     };
 
     var init = function () {
         var $navigator = $("#navigator");
         for (var i = 0, length = modules.length; i < length; i++) {
-            $("<div></div>").wrapInner("<a href='demos/" + modules[i].artifact + "'>" + modules[i].name + "</a>").appendTo($navigator);
+            $("<div></div>").wrapInner("<a href='#' artifact='" + modules[i].artifact + "'>" + modules[i].name + "</a>").appendTo($navigator);
         }
 
         var selectedItem;
@@ -39,10 +60,11 @@
             }
             if (selectedItem) {
                 $(selectedItem).parent().removeClass("selected");
+                unloadDemo($(selectedItem).attr("artifact"));
             }
             selectedItem = this;
             $(this).parent().addClass("selected");
-            loadDemo(this.href);
+            loadDemo($(this).attr("artifact"));
             return false;
         });
     };

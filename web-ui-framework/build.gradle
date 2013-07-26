@@ -32,7 +32,7 @@ less {
     sourceDir "$lessRoot"
     outputDir "$lessRoot"
     includes '**/*.less'
-    excludes 'reset.less'
+    excludes '**/base.less'
     force true
 //    compress true
 }
