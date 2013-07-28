@@ -4,16 +4,22 @@
  * Blog: http://www.guoyao.me
  */
 
-(function ($) {
+(function (document, $) {
 
-//    (function () {
-        $,fn.graceNav = function () {
-            return this.find(".item").each(function () {
-                $(this).mouseover(function () {
-                    console.log(this);
-                });
+    var isIe6 = $.browser.msie && $.browser.version == "6.0";
+
+    $.fn.graceNav = function () {
+        if (isIe6) {
+            alert(123);
+            return this.find(".item").hover(function () {
+                $(this).find("ul").css("display", "block");
+            }, function () {
+                $(this).find("ul").css("display", "none");
             });
-        };
-//    })();
+        }
+        else {
+            return this;
+        }
+    };
 
-})(jQuery);
+})(document, jQuery);

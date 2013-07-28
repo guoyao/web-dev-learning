@@ -29,7 +29,7 @@ ul.grace-nav {
         background-color: darken(@component-background-color, 10%);
       }
     }
-    &:hover ul {
+    &:hover ul { // ie6 does't support :hover class except link tag('a'), we use js to support hover effect for ie6
       display: block;
     }
   }
