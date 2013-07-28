@@ -12,14 +12,8 @@ ul.grace-nav {
   margin: 0;
   padding: 0;
   list-style-type: none;
-  border-radius: 10px;
-  -webkit-border-radius: 10px;
-  -moz-border-radius: 10px;
 }
-ul.grace-nav .item {
-  float: left;
-}
-ul.grace-nav .item a {
+ul.grace-nav a {
   min-width: 100px;
   padding: 6px 10px;
   display: block;
@@ -29,10 +23,13 @@ ul.grace-nav .item a {
   width: 100px;
   white-space: nowrap;
 }
-ul.grace-nav .item a:hover {
+ul.grace-nav a:hover {
   background-color: #d5d5d5;
 }
-ul.grace-nav .item:hover ul {
+ul.grace-nav > li {
+  float: left;
+}
+ul.grace-nav li:hover > ul {
   display: block;
 }
 ul.grace-nav ul {
@@ -40,4 +37,13 @@ ul.grace-nav ul {
   margin: 0;
   padding: 0;
   list-style-type: none;
+}
+ul.grace-nav ul li {
+  _display: inline;
+  position: relative;
+}
+ul.grace-nav ul li ul {
+  position: absolute;
+  top: 0;
+  left: 120px;
 }

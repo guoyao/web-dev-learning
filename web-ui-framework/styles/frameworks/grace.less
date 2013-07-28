@@ -12,31 +12,38 @@ ul.grace-nav {
   margin: 0;
   padding: 0;
   list-style-type: none;
-  .border-radius(10px);
-  .item {
+  a {
+    min-width: 100px;
+    padding: 6px 10px;
+    display: block;
+    text-align: center;
+    background-color: @component-background-color;
+    width: auto !important; // css hack for ie6
+    width: 100px; // css hack for ie6
+    white-space: nowrap; // css hack for ie6
+    &:hover {
+      background-color: darken(@component-background-color, 10%);
+    }
+  }
+  > li { // ie6 does't support direct child selecotr('>'), we use js to imitate this feature for ie6
     float: left;
-    a {
-      min-width: 100px;
-      padding: 6px 10px;
-      display: block;
-      text-align: center;
-      background-color: @component-background-color;
-      // css hack for ie6
-      width: auto !important;
-      width: 100px;
-      white-space: nowrap;
-      &:hover {
-        background-color: darken(@component-background-color, 10%);
-      }
-    }
-    &:hover ul { // ie6 does't support :hover class except link tag('a'), we use js to support hover effect for ie6
-      display: block;
-    }
+  }
+  li:hover > ul { // ie6 does't support :hover class except link tag('a'), we use js to imitate this feature for ie6
+    display: block;
   }
   ul {
     display: none;
     margin: 0;
     padding: 0;
     list-style-type: none;
+    li {
+      _display: inline; // css hack for ie6
+      position: relative;
+      ul {
+        position: absolute;
+        top: 0;
+        left: 120px;
+      }
+    }
   }
 }
