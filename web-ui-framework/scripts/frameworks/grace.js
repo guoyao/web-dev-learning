@@ -10,11 +10,11 @@
 
     $.fn.graceNav = function () {
         if (isIe6) {
-            alert(123);
-            return this.find(".item").hover(function () {
-                $(this).find("ul").css("display", "block");
+            this.find("> li").css("float", "left");
+            return this.find("li").hover(function () {
+                $(this).find("> ul").css("display", "block");
             }, function () {
-                $(this).find("ul").css("display", "none");
+                $(this).find("> ul").css("display", "none");
             });
         }
         else {
