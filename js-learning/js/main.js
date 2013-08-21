@@ -7,7 +7,6 @@
  */
 
 (function (window, document) {
-    alert(Prototype.Browser.Opera);
     var $ = function (id) {
         return document.getElementById(id);
     };
@@ -118,18 +117,11 @@
             });
             alert($("step1").style.transform);
         });
-        console.log(navigator.userAgent);
+//        console.log(navigator.userAgent);
     };
 
     var arrayify = function (a) {
         return Array.prototype.slice.call(a);
     };
-
-    (function () {
-        var test = function () {
-            console.log(arguments);
-        };
-        test(1, "qq", "qwe");
-    })();
 
 })(window, document);

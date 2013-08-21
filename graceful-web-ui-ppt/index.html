@@ -1,0 +1,136 @@
+<!--
+  Author: guoyao
+  Time: 08-21-2013 13:36
+  Blog: http://www.guoyao.me
+-->
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <title>Graceful Web UI PPT</title>
+  <link rel="stylesheet" type="text/css" href="css/impress-demo.css"/>
+  <link rel="stylesheet" type="text/css" href="css/graceful-web-ui.min.css"/>
+  <link rel="stylesheet" type="text/css" href="css/index.css"/>
+</head>
+<body>
+<div id="impress-not-supported">
+  <div class="fallback-message">
+    <p>你的浏览器<b>不支持</b> impress-bcc.js, 所以当前展示的是简化版。</p>
+
+    <p>为了获得更好的体验，请使用最新的 <b>Chrome</b>, <b>Safari</b> 或者 <b>Firefox</b> 浏览器。</p>
+  </div>
+</div>
+<div id="impress">
+  <div id="bored" class="step slide" data-x="-1000" data-y="-1500">
+    <h1>Graceful Web UI简介</h1>
+    <hr />
+    <ul>
+      <li>
+        <code>Graceful-web-ui</code> 是一个web前端开发框架的开源项目，目的是创建一个优雅、跨浏览器、直观、强大的web ui framework，从而加快web前端开发，使得开发更加容易。
+      </li>
+      <li>
+        使用了<code>Less</code>、<code>Nodejs</code>、<code>Bower</code>、<code>Qunit</code>、<code>Normalize</code>等，
+        借鉴了<code>Bootstrap</code>的部分思想；各个组件依赖于<code>Jquery</code>，以Jquery Plugin的形式开发。
+      </li>
+      <li>
+        使用<code>Git</code>来实现版本控制，使用<code>Github</code>来管理项目、协作开发。
+        项目地址：<a href="https://github.com/guoyao/graceful-web-ui">https://github.com/guoyao/graceful-web-ui</a>
+      </li>
+    </ul>
+  </div>
+
+  <div class="step slide" data-x="0" data-y="-1500">
+    <h1>项目整体结构</h1>
+    <hr />
+    <div class="grid">
+      <div class="row-fluid">
+        <div class="span5">
+          <div class="bordered">
+            <img src="assets/images/graceful-web-ui-structure.png"/>
+          </div>
+        </div>
+        <div class="span7">
+          <div class="bordered">
+            <ul>
+              <li class="no-margin">
+                <small><code>assets</code>目录存放项目需要的image、icon等资源文件。</small>
+              </li>
+              <li class="no-margin">
+                <small><code>bower_components</code>、<code>dist</code>、<br/><code>node_modules</code>
+                  都是临时目录，每次编译时都会自动生成。分别存放项目依赖、编译的最终结果、自动化编译/测试等所需的nodejs模块。
+                </small>
+              </li>
+              <li class="no-margin">
+                <small><code>demo</code>目录存放demo、文档等。</small>
+              </li>
+              <li class="no-margin">
+                <small><code>js</code>目录存放项目所有的javascript文件，在编译时会被合并。</small>
+              </li>
+              <li class="no-margin">
+                <small><code>less</code>目录存放项目所有的less文件，编译时会先合并，然后翻译成css。</small>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="step slide" data-x="1000" data-y="-1500">
+    <h1>项目整体结构</h1>
+    <hr />
+    <div class="grid">
+      <div class="row-fluid">
+        <div class="span5">
+          <div class="bordered">
+            <img src="assets/images/graceful-web-ui-structure.png"/>
+          </div>
+        </div>
+        <div class="span7">
+          <div class="bordered">
+            <ul>
+              <li class="no-margin">
+                <small><code>bower.json</code>文件存放项目所需要的第三方依赖，包括jquery、qunit等。</small>
+              </li>
+              <li class="no-margin">
+                <small><code>Gruntfile.js</code>文件存放项目自动化编译、合并、打包等脚本。</small>
+              </li>
+              <li class="no-margin">
+                <small><code>package.json</code>文件存放项目的描述文件，所需的nodejs模块依赖等。</small>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="step slide" data-x="0" data-y="800" data-scale="4">
+    <h1>Less简介</h1>
+    <hr />
+  </div>
+
+  <div class="step slide" data-x="850" data-y="10000" data-rotate="90" data-scale="5">
+    <h1>Nodejs简介</h1>
+    <hr />
+  </div>
+
+  <div class="step slide" data-x="8500" data-y="2100" data-rotate="180" data-scale="6">
+    <h1>Bower简介</h1>
+    <hr />
+  </div>
+
+  <div class="step slide" data-x="2825" data-y="3325" data-z="-8000" data-rotate="300" data-scale="1">
+    <h1>Grunt简介</h1>
+    <hr />
+  </div>
+
+  <div id="overview" class="step" data-x="0" data-y="-1500" data-scale="2.1"></div>
+</div>
+<script type="text/javascript" src="js/impress.js"></script>
+<script type="text/javascript">
+  impress().init();
+</script>
+</body>
+</html>
