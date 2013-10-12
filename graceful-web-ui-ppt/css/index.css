@@ -29,9 +29,21 @@ hr {
 }
 
 .bordered {
-    padding: 8px;
+    padding: 8px 8px 0;
     border: 1px solid #d1d1d1;
     -webkit-border-radius: 8px;
     -moz-border-radius: 8px;
     border-radius: 8px;
+}
+
+pre {
+    font-size: 20px;
+}
+
+.code {
+    padding: 2px 4px;
+    color: #c7254e;
+    white-space: nowrap;
+    background-color: #f9f2f4;
+    border-radius: 4px;
 }

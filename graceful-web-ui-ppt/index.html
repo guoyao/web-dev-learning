@@ -8,7 +8,7 @@
 <html>
 <head>
   <meta charset="utf-8"/>
-  <title>Graceful Web UI PPT</title>
+  <title>GUI PPT</title>
   <link rel="stylesheet" type="text/css" href="css/impress-demo.css"/>
   <link rel="stylesheet" type="text/css" href="css/graceful-web-ui.min.css"/>
   <link rel="stylesheet" type="text/css" href="css/index.css"/>
@@ -23,19 +23,19 @@
 </div>
 <div id="impress">
   <div id="bored" class="step slide" data-x="-1000" data-y="-1500">
-    <h1>Graceful Web UI简介</h1>
+    <h1>GUI简介</h1>
     <hr />
     <ul>
       <li>
-        <code>Graceful-web-ui</code> 是一个web前端开发框架的开源项目，目的是创建一个优雅、跨浏览器、直观、强大的web ui framework，从而加快web前端开发，使得开发更加容易。
+        <code>GUI</code> 是一个web前端开发框架的开源项目，目的是创建一个优雅、跨浏览器、直观、强大的web ui framework，从而加快web前端开发，使得开发更加容易。
       </li>
       <li>
         使用了<code>Less</code>、<code>Nodejs</code>、<code>Bower</code>、<code>Qunit</code>、<code>Normalize</code>等，
-        借鉴了<code>Bootstrap</code>的部分思想；各个组件依赖于<code>Jquery</code>，以Jquery Plugin的形式开发。
+        借鉴了<code>Bootstrap</code>的架构思想；各个组件依赖于<code>Jquery</code>，以Jquery Plugin的形式开发。
       </li>
       <li>
         使用<code>Git</code>来实现版本控制，使用<code>Github</code>来管理项目、协作开发。
-        项目地址：<a href="https://github.com/guoyao/graceful-web-ui">https://github.com/guoyao/graceful-web-ui</a>
+        项目地址：<a href="https://github.com/guoyao/gui">https://github.com/guoyao/gui</a>
       </li>
     </ul>
   </div>
@@ -47,7 +47,7 @@
       <div class="row-fluid">
         <div class="span5">
           <div class="bordered">
-            <img src="assets/images/graceful-web-ui-structure.png"/>
+            <img src="assets/images/gui-structure.png"/>
           </div>
         </div>
         <div class="span7">
@@ -57,18 +57,15 @@
                 <small><code>assets</code>目录存放项目需要的image、icon等资源文件。</small>
               </li>
               <li class="no-margin">
-                <small><code>bower_components</code>、<code>dist</code>、<br/><code>node_modules</code>
-                  都是临时目录，每次编译时都会自动生成。分别存放项目依赖、编译的最终结果、自动化编译/测试等所需的nodejs模块。
+                <small><code>bower_components</code>、<code>demo</code>、<code>dist</code>、<br/><code>node_modules</code>
+                  都是临时目录，每次编译时都会自动生成。分别存放项目依赖、demo生成、编译的最终结果、自动化编译/测试等所需的nodejs模块。
                 </small>
               </li>
               <li class="no-margin">
-                <small><code>demo</code>目录存放demo、文档等。</small>
+                <small><code>demo_template</code>目录存放demo模板文件、文档等。</small>
               </li>
               <li class="no-margin">
                 <small><code>js</code>目录存放项目所有的javascript文件，在编译时会被合并。</small>
-              </li>
-              <li class="no-margin">
-                <small><code>less</code>目录存放项目所有的less文件，编译时会先合并，然后翻译成css。</small>
               </li>
             </ul>
           </div>
@@ -84,20 +81,26 @@
       <div class="row-fluid">
         <div class="span5">
           <div class="bordered">
-            <img src="assets/images/graceful-web-ui-structure.png"/>
+            <img src="assets/images/gui-structure.png"/>
           </div>
         </div>
         <div class="span7">
           <div class="bordered">
             <ul>
               <li class="no-margin">
-                <small><code>bower.json</code>文件存放项目所需要的第三方依赖，包括jquery、qunit等。</small>
+                <small><code>.travis.yml</code>持续集成脚本。</small>
               </li>
               <li class="no-margin">
-                <small><code>Gruntfile.js</code>文件存放项目自动化编译、合并、打包等脚本。</small>
+                <small><code>less</code>目录存放项目所有的less文件，编译时会先合并，然后翻译成css。</small>
               </li>
               <li class="no-margin">
-                <small><code>package.json</code>文件存放项目的描述文件，所需的nodejs模块依赖等。</small>
+                <small><code>bower.json</code>声明和管理项目所需要的第三方依赖，包括jquery、qunit、requirejs等。</small>
+              </li>
+              <li class="no-margin">
+                <small><code>Gruntfile.js</code>项目自动化编译、合并、测试、打包、demo生成等脚本。</small>
+              </li>
+              <li class="no-margin">
+                <small><code>package.json</code>项目的描述文件，所需的nodejs模块依赖等。</small>
               </li>
             </ul>
           </div>
@@ -106,24 +109,249 @@
     </div>
   </div>
 
-  <div class="step slide" data-x="0" data-y="800" data-scale="4">
+  <div class="step slide" data-x="0" data-y="1200" data-scale="4">
     <h1>Less简介</h1>
     <hr />
+    <p>
+      Less是一种动态样式语言，属于CSS预处理语言的一种，它使用类似CSS的语法，为CSS的赋予了动态语言的特性，如变量、继承、运算、函数等，更方便CSS的编写和维护。
+    </p>
+    <p>
+      Less可以在多种语言、环境中使用，包括浏览器端、桌面客户端、服务端。
+    </p>
+    <pre>
+.<span class="code">make-column-fluid-offset</span>(@column) {
+  @grid-content-width: @grid-total-width - @grid-gutter-width;
+  @grid-column-width: @grid-total-width / @grid-columns - @grid-gutter-width;
+  <span class="code">margin-left</span>: <span class="code">percentage</span>((@grid-column-width * @column + (@column + 1) * @grid-gutter-width) / @grid-content-width);
+}</pre>
+    <pre>
+.row-fluid .offset1 {
+  .<span class="code">make-column-fluid-offset</span>(1);
+}</pre>
+  </div>
+
+  <div class="step slide" data-x="4500" data-y="1200" data-scale="4">
+    <h1>Less简介</h1>
+    <hr />
+    <pre>
+.<span class="code">table-row-variant</span>(@state, @background, @border) {
+  .gui-table > thead > tr,
+  .gui-table > tbody > tr,
+  .gui-table > tfoot > tr {
+    > td.@{state},
+    > th.@{state},
+    &.@{state} > td,
+    &.@{state} > th {
+      <span class="code">background-color</span>: @background;
+      <span class="code">border-color</span>: @border;
+    }
+  }
+}</pre>
+  </div>
+
+  <div class="step slide" data-x="9000" data-y="1200" data-scale="4">
+    <h1>Less简介</h1>
+    <hr />
+    <pre style="font-size: 14px;">
+.gui-breadcrumb {
+  padding: 8px 15px;
+  margin-bottom: @line-height-computed;
+  list-style: none;
+  background-color: @breadcrumb-bg;
+  border-radius: @border-radius-base;
+  > li {
+    display: inline-block;
+    &+li:before {
+      content: "/\00a0"; // Unicode space added since inline-block means non-collapsing white-space
+      padding: 0 5px;
+      color: @breadcrumb-color;
+    }
+    &+li.gui-with-seperator:before {
+      content: none;
+      padding: 0;
+    }
+  }
+  > .active {
+    color: @breadcrumb-active-color;
+  }
+  .gui-breadcrumb-sperator {
+    color: @breadcrumb-color;
+    padding: 0 5px;
+  }
+}</pre>
   </div>
 
   <div class="step slide" data-x="850" data-y="10000" data-rotate="90" data-scale="5">
-    <h1>Nodejs简介</h1>
+    <h1>Node.js简介</h1>
     <hr />
+    <p>
+      Node.js是一个Javascript的运行环境，一个可以快速构建网络服务及应用的平台；采用C++语言编写而成，
+      基于Chrome's JavaScript runtime，对Google <span class="code">V8</span>引擎进行了封装，性能很好。
+    </p>
+    <p>
+      Node.js使用 <span class="code">事件驱动</span>，<span class="code">非阻塞I/O模型（异步）</span>，
+      使得它轻量级，高效，非常适合处理并发请求，因此构建在Node上的服务相比其他技术实现的服务表现要好得多；
+      完美的适用于分布式的数据密集型实时应用。
+    </p>
+    <p>
+      Node.js提供了很多系统级的API，如 <span class="code">文件操作</span>、<span class="code">网络编程</span> 等。
+      浏览器端的Javascript代码在运行时会受到各种安全性的限制，对客户系统的操作有限。相比之下，Node.js则是一个全面的后台运行时，
+      为Javascript提供了其他语言能够实现的许多功能。
+    </p>
   </div>
 
-  <div class="step slide" data-x="8500" data-y="2100" data-rotate="180" data-scale="6">
+  <div class="step slide" data-x="-3000" data-y="10000" data-rotate="90" data-scale="5">
+    <h1>Node.js简介</h1>
+    <hr />
+    <ul>
+      <li class="no-margin">
+        <span class="code">特点</span>
+        <ul style="list-style-type: decimal;">
+          <li class="no-margin">纯event IO并发，极其适合超高IO并发场景</li>
+          <li class="no-margin">JavaScript V8引擎的性能非常好</li>
+          <li class="no-margin">仅适合IO密集型并发，不适合CPU密集并发</li>
+          <li class="no-margin">不适合开发业务逻辑过于复杂的应用</li>
+          <li class="no-margin">异步编程复杂度和调试难度偏高</li>
+        </ul>
+      </li>
+      <li class="no-margin">
+        <span class="code">应用场景</span>
+        <ul style="list-style-type: decimal;">
+          <li class="no-margin">游戏服务器端</li>
+          <li class="no-margin">长连接服务器端, 单机往往维持几千上万长连接的</li>
+          <li class="no-margin">对IO并发要求极高的情况</li>
+        </ul>
+      </li>
+      <li class="no-margin">
+        <span class="code">问题</span>
+        <ul style="list-style-type: decimal;">
+          <li class="no-margin">
+            event IO异步编程是一种相当原始的编程方式，IO操作都需要异步回调，稍微复杂的代码有十几层嵌套，代码可阅读性和维护性很差。
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+
+  <div class="step slide" data-x="18000" data-y="2100" data-rotate="180" data-scale="6">
     <h1>Bower简介</h1>
     <hr />
+
+    <p>
+      Bower 是 twitter 推出的一款包管理工具，基于node.js的模块化思想，把功能分散到各个模块中，让模块和模块之间存在联系，通过 Bower 来管理模块间的这种联系。
+    </p>
+
+    <p>
+      包管理工具一般有以下的功能：
+      <ul>
+        <li>
+          <span class="code">注册机制</span>：每个包需要确定一个唯一的 ID 使得搜索和下载的时候能够正确匹配，所以包管理工具需要维护注册信息，可以依赖其他平台。
+        </li>
+        <li>
+          <span class="code">文件存储</span>：确定文件存放的位置，下载的时候可以找到，当然这个地址在网络上是可访问的。
+        </li>
+        <li>
+          <span class="code">上传下载</span>：这是工具的主要功能，能提高包使用的便利性。比如想用 jquery 只需要 install 一下就可以了，不用到处找下载。上传并不是必备的，根据文件存储的位置而定，但需要有一定的机制保障。
+        </li>
+      </ul>
+    </p>
   </div>
 
-  <div class="step slide" data-x="2825" data-y="3325" data-z="-8000" data-rotate="300" data-scale="1">
+  <div class="step slide" data-x="18000" data-y="-2500" data-rotate="180" data-scale="6">
+    <h1>Bower简介</h1>
+    <hr />
+
+    <ul>
+      <li>
+        <span class="code">依赖分析</span>：这也是包管理工具主要解决的问题之一，既然包之间是有联系的，那么下载的时候就需要处理他们之间的依赖。下载一个包的时候也需要下载依赖的包。
+      </li>
+    </ul>
+
+    <p>
+      通过 Bower 来安装GUI: <code>bower install gui</code>
+    </p>
+    <p>
+      通过 bower search 命令来查找，如：<code>bower search gui</code>
+      <div class="bordered" style="margin-bottom: 6px;">
+        <img src="assets/images/bower-search.png"/>
+      </div>
+      通过 bower info 命令来查看package的信息，如：<code>bower info gui</code>
+      <div class="bordered" style="margin-top: 6px;">
+        <img src="assets/images/bower-info.png"/>
+      </div>
+    </p>
+  </div>
+
+  <div class="step slide" data-x="18000" data-y="-7000" data-rotate="180" data-scale="6">
+    <h1>Bower简介</h1>
+    <hr />
+
+    <ul>
+      <li>
+        GUI 的 bower.json 文件内容如下：
+      </li>
+    </ul>
+    <pre>
+{
+    "name": "gui",
+    "version": "0.1.0",
+    "main": ["./dist/js/gui.js", "./dist/css/gui.css"],
+    "ignore": [
+        "**/.*"
+    ],
+    "dependencies": {
+        "jquery": "~1.8.3"
+    },
+    "devDependencies": {
+        "qunit": "~1.12.0",
+        "google-code-prettify": ">=1.0.0",
+        "requirejs": ">=2.1.8"
+    }
+}</pre>
+  </div>
+
+  <div class="step slide" data-x="5000" data-y="5000" data-z="-2000" data-rotate="300" data-scale="1">
     <h1>Grunt简介</h1>
     <hr />
+
+    <p>
+      Grunt是一个基于Node.js的自动化构建工具。
+    </p>
+
+    <p>
+      Java世界里的Maven提供了强大的包依赖管理和构建生命周期管理。在JavaScript的世界里，
+      随着Node.js的流行，JavaScript原生的构建工具已经成为可能。
+    </p>
+
+    <p>
+      Grunt是基于Node.js的自动化任务运行器。Grunt结合NPM的包依赖管理，完全可以媲美Maven。
+      Grunt天然适合前端应用程序的构建，不仅限于JavaScript项目，同样可以用于其他语言的应用程序构建。
+      越来越多的JavaScript项目已经在使用Grunt，其中包括著名的 <code>jQuery</code>、<code>Bootstrap</code>、<code>WordPress</code>、
+      <code>Backbone</code>、<code>Pure</code>、<code>Modernizr</code>等。
+    </p>
+  </div>
+
+  <div class="step slide" data-x="10000" data-y="5000" data-z="-2000" data-rotate="500" data-scale="1">
+    <h1>几点建议</h1>
+    <hr />
+
+    <ul>
+      <li>
+        代码提交前必须通过自动化代码质量检查（目前基于 <code>jshint</code>），杜绝任何错误、警告。
+      </li>
+      <li>
+        重要代码必须写Unit Test（目前基于 <code>QUnit</code>），有了单元测试，代码重构就基本无后顾之忧了。
+      </li>
+      <li>
+        单元测试的代码覆盖率至少要超过60%（目前基于 <code>coveralls</code>）。覆盖率太低的测试没有实际意义。
+      </li>
+      <li>
+        多阅读著名开源项目的代码，这些代码都经过千锤百炼，都是精华中的精华。坚持code review（代码审查），查看别人的代码，取长补短。
+      </li>
+      <li>
+        坚持代码重构，这样才能写出更优秀，更易扩展，更易维护的代码。
+      </li>
+    </ul>
   </div>
 
   <div id="overview" class="step" data-x="0" data-y="-1500" data-scale="2.1"></div>
