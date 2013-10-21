@@ -14,13 +14,16 @@ requirejs.config({
             deps: ["jquery", "underscore"],
             exports: "Backbone"
         },
+        "jquery-ui": {
+            deps: ["jquery"]
+        },
         "jquery.dateFormat": {
             deps: ["jquery"]
         }
     }
 });
 
-require(["jquery", "../views/library", "jquery-ui"], function ($, LibraryView) {
-    $('#releaseDate' ).datepicker();
+require(["jquery", "../views/library", "jquery-ui", "jquery.dateFormat"], function ($, LibraryView) {
+    $('#releaseDate').datepicker();
     new LibraryView();
 });

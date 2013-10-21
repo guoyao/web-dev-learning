@@ -1,11 +1,11 @@
-define(["jquery", "underscore", "backbone"], function ($, _, Backbone) {
+define(["jquery", "underscore", "backbone", "../collections/library", "../views/book"], function ($, _, Backbone, Library, BookView) {
     var LibraryView = Backbone.View.extend({
         el: '#books',
         events: {
             'click #add': 'addBook'
         },
         initialize: function () {
-            this.collection = new app.Library();
+            this.collection = new Library();
             this.collection.fetch({reset: true});
             this.render();
             this.listenTo(this.collection, 'add', this.renderBook);
@@ -20,7 +20,7 @@ define(["jquery", "underscore", "backbone"], function ($, _, Backbone) {
         // render a book by creating a BookView and appending the
         // element it renders to the library's element
         renderBook: function (item) {
-            var bookView = new app.BookView({
+            var bookView = new BookView({
                 model: item
             });
             this.$el.append(bookView.render().el);
