@@ -1,0 +1,10 @@
+{
+    "name": "backbone-requirejs-demo",
+    "version": "0.0.1",
+    "description": "A simple application using Backbone and RequireJS",
+    "dependencies": {
+        "express": ">=3.4.1",
+        "path": ">=0.4.9",
+        "mongoose": ">=3.6.20"
+    }
+}
