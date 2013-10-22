@@ -18,3 +18,5 @@ target
 .settings
 bin
 node_modules*
+vendor/bower
+test/coverage
