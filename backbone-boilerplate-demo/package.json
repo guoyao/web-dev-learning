@@ -15,7 +15,11 @@
         "grunt-karma-coveralls": "~2.0.2",
         "karma-mocha": "~0.1.0",
         "karma-phantomjs-launcher": "~0.1.0",
-        "karma-coverage": "~0.1.0"
+        "karma-coverage": "~0.1.0",
+
+        "express": ">=3.4.1",
+        "path": ">=0.4.9",
+        "mongoose": ">=3.6.20"
     },
 
     "peerDependencies": {
@@ -26,6 +30,7 @@
     },
 
     "scripts": {
-        "test": "grunt karma:run coveralls"
+        "test": "grunt karma:run coveralls",
+        "postinstall": "bower install -s"
     }
 }
