@@ -3,41 +3,49 @@ module.exports = function (grunt) {
 
     grunt.initConfig({
         // Wipe out previous builds and test reporting.
-        clean: ["dist/", "test/reports"],
+        clean: ['dist/', 'test/reports'],
 
         // Run your source code through JSHint's defaults.
-        jshint: ["app/**/*.js"],
+        jshint: {
+            all: ['Gruntfile.js', 'public/js/**/*.js', 'test/<%= karma.options.frameworks[0] %>/**/*.spec.js'],
+            options: {
+                jshintrc: '.jshintrc',
+                ignores: ['public/js/libs/**/*.js']
+            }
+        },
 
-        // This task uses James Burke's excellent r.js AMD builder to take all
+        bower: {
+            install: {
+                options: {
+                    copy: false,
+                    cleanTargetDir: true
+                }
+            }
+        },
+
+        copy: {
+            release: {
+                files: [
+                    {
+                        'public/js/libs/require.js': 'vendor/bower/requirejs/require.js',
+                        'public/js/libs/jquery.js': 'vendor/bower/jquery/jquery.js',
+                        'public/js/libs/json2.js': 'vendor/lib/json2.js',
+                        'public/js/libs/underscore.js': 'vendor/bower/lodash/dist/lodash.underscore.js',
+                        'public/js/libs/backbone.js': 'vendor/bower/backbone/backbone.js',
+                        'public/js/libs/jquery-ui.js': 'vendor/bower/jquery-ui/ui/jquery-ui.js',
+                        'public/js/libs/jquery.dateFormat.js': 'vendor/lib/jquery.dateFormat.js'
+                    },
+                ]
+            }
+        },
+
+        // This task uses James Burke's excellent r.js AMD builder to take
         // modules and concatenate them into a single file.
         requirejs: {
-            release: {
+            options: grunt.file.readJSON('public/optimizer.json'),
+            optimize: {
                 options: {
-                    mainConfigFile: "app/config.js",
-                    generateSourceMaps: true,
-                    include: ["main"],
-                    insertRequire: ["main"],
-                    out: "dist/source.min.js",
-                    optimize: "uglify2",
-
-                    // Since we bootstrap with nested `require` calls this option allows
-                    // R.js to find them.
-                    findNestedDependencies: true,
-
-                    // Include a minimal AMD implementation shim.
-                    name: "almond",
-
-                    // Setting the base url to the distribution directory allows the
-                    // Uglify minification process to correctly map paths for Source
-                    // Maps.
-                    baseUrl: "dist/app",
-
-                    // Wrap everything in an IIFE.
-                    wrap: true,
-
-                    // Do not preserve any license comments when working with source
-                    // maps.  These options are incompatible.
-                    preserveLicenseComments: false
+                    fileExclusionRegExp: /less|optimizer\.json/
                 }
             }
         },
@@ -49,17 +57,22 @@ module.exports = function (grunt) {
         styles: {
             // Out the concatenated contents of the following styles into the below
             // development file path.
-            "dist/styles.css": {
+            'dist/css/common.css': {
+                prefix: "./public/css/",
+
                 // Point this to where your `index.css` file is location.
-                src: "app/styles/index.css",
+                src: 'public/css/common.css',
 
                 // The relative path to use for the @imports.
-                paths: ["app/styles"],
+                paths: ['public/css'],
 
-                // Rewrite image paths during release to be relative to the `img`
-                // directory.
-//                forceRelative: "/app/img/"
-                forceRelative: "./"
+                // Rewrite image paths during release to be relative to the `./` directory.
+                forceRelative: './'
+            },
+            'dist/css/index.css': {
+                prefix: "./public/css/",
+                src: 'public/css/index.css',
+                forceRelative: './'
             }
         },
 
@@ -67,14 +80,23 @@ module.exports = function (grunt) {
         cssmin: {
             release: {
                 files: {
-                    "dist/styles.min.css": ["dist/styles.css"]
+                    'dist/css/common.min.css': ['dist/css/common.css'],
+                    'dist/css/index.min.css': ['dist/css/index.css']
+                }
+            }
+        },
+
+        processhtml: {
+            release: {
+                files: {
+                    'dist/index.html': ['public/index.html']
                 }
             }
         },
 
         server: {
             options: {
-                host: "0.0.0.0",
+                host: '0.0.0.0',
                 port: 8000
             },
 
@@ -82,7 +104,7 @@ module.exports = function (grunt) {
 
             release: {
                 options: {
-                    prefix: "dist"
+                    prefix: 'dist'
                 }
             },
 
@@ -94,30 +116,12 @@ module.exports = function (grunt) {
             }
         },
 
-        processhtml: {
-            release: {
-                files: {
-                    "dist/index.html": ["index.html"]
-                }
-            }
-        },
-
-        // Move vendor and app logic during a build.
-        copy: {
-            release: {
-                files: [
-                    { src: ["app/**"], dest: "dist/" },
-                    { src: "vendor/**", dest: "dist/" }
-                ]
-            }
-        },
-
         compress: {
             release: {
                 options: {
-                    archive: "dist/source.min.js.gz"
+                    archive: 'dist/source.min.js.gz'
                 },
-                files: ["dist/source.min.js"]
+                files: ['dist/source.min.js']
             }
         },
 
@@ -129,42 +133,42 @@ module.exports = function (grunt) {
                 singleRun: true,
                 captureTimeout: 7000,
                 autoWatch: true,
-                logLevel: "ERROR",
+                logLevel: 'ERROR',
 
-                reporters: ["progress", "coverage"],
-                browsers: ["PhantomJS"],
+                reporters: ['progress', 'coverage'],
+                browsers: ['PhantomJS'],
 
                 // Change this to the framework you want to use.
-                frameworks: ["mocha"],
+                frameworks: ['mocha'],
 
                 plugins: [
-                    "karma-mocha",
-                    "karma-phantomjs-launcher",
-                    "karma-coverage"
+                    'karma-mocha',
+                    'karma-phantomjs-launcher',
+                    'karma-coverage'
                 ],
 
                 preprocessors: {
-                    "app/**/*.js": "coverage"
+                    'public/js/**/*.js': 'coverage'
                 },
 
                 coverageReporter: {
-                    type: "lcov",
-                    dir: "test/coverage"
+                    type: 'lcov',
+                    dir: 'test/coverage'
                 },
 
                 files: [
                     // You can optionally remove this or swap out for a different expect.
-                    "vendor/bower/chai/chai.js",
-                    "vendor/bower/requirejs/require.js",
-                    "test/runner.js",
+                    'vendor/bower/chai/chai.js',
+                    'vendor/bower/requirejs/require.js',
+                    'test/runner.js',
 
-                    { pattern: "app/**/*.*", included: false },
+                    { pattern: 'public/js/**/*.*', included: false },
                     // Derives test framework from Karma configuration.
                     {
-                        pattern: "test/<%= karma.options.frameworks[0] %>/**/*.spec.js",
+                        pattern: 'test/<%= karma.options.frameworks[0] %>/**/*.spec.js',
                         included: false
                     },
-                    { pattern: "vendor/**/*.js", included: false }
+                    { pattern: 'vendor/**/*.js', included: false }
                 ]
             },
 
@@ -186,36 +190,41 @@ module.exports = function (grunt) {
 
         coveralls: {
             options: {
-                coverage_dir: "test/coverage/PhantomJS 1.9.2 (Linux)/"
+                coverage_dir: 'test/coverage/PhantomJS 1.9.2 (Linux)/'
             }
         }
     });
 
     // Grunt contribution tasks.
-    grunt.loadNpmTasks("grunt-contrib-clean");
-    grunt.loadNpmTasks("grunt-contrib-jshint");
-    grunt.loadNpmTasks("grunt-contrib-cssmin");
-    grunt.loadNpmTasks("grunt-contrib-copy");
-    grunt.loadNpmTasks("grunt-contrib-compress");
+    grunt.loadNpmTasks('grunt-contrib-clean');
+    grunt.loadNpmTasks('grunt-contrib-jshint');
+    grunt.loadNpmTasks('grunt-contrib-cssmin');
+    grunt.loadNpmTasks('grunt-contrib-copy');
+    grunt.loadNpmTasks('grunt-contrib-compress');
+    grunt.loadNpmTasks('grunt-bower-task');
 
     // Third-party tasks.
-    grunt.loadNpmTasks("grunt-karma");
-    grunt.loadNpmTasks("grunt-karma-coveralls");
-    grunt.loadNpmTasks("grunt-processhtml");
+    grunt.loadNpmTasks('grunt-karma');
+    grunt.loadNpmTasks('grunt-karma-coveralls');
+    grunt.loadNpmTasks('grunt-processhtml');
 
     // Grunt BBB tasks.
-    grunt.loadNpmTasks("grunt-bbb-server");
-    grunt.loadNpmTasks("grunt-bbb-requirejs");
-    grunt.loadNpmTasks("grunt-bbb-styles");
+    grunt.loadNpmTasks('grunt-bbb-server');
+    grunt.loadNpmTasks('grunt-bbb-styles');
+
+    // Requirejs tasks.
+    grunt.loadNpmTasks('grunt-contrib-requirejs');
 
     // When running the default Grunt command, just lint the code.
-    grunt.registerTask("default", [
-        "clean",
-        "jshint",
-        "processhtml",
-        "copy",
-        "requirejs",
-        "styles",
-        "cssmin",
+    grunt.registerTask('default', [
+        'clean',
+        'jshint',
+        'bower',
+        'copy',
+        'requirejs',
+        'styles',
+        'cssmin',
+        'processhtml'
+//        'cssmin',
     ]);
 };
