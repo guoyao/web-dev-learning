@@ -216,7 +216,7 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-requirejs');
 
     // When running the default Grunt command, just lint the code.
-    grunt.registerTask('default', [
+    grunt.registerTask('dist', [
         'clean',
         'jshint',
         'bower',
@@ -227,4 +227,8 @@ module.exports = function (grunt) {
         'cssmin',
         'processhtml'
     ]);
+
+    grunt.registerTask('default', ['dist']);
+
+    grunt.registerTask('test', ['karma:run']);
 };

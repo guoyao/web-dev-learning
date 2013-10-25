@@ -8,11 +8,11 @@
     "preserveLicenseComments": false,
     "modules": [
         {
-            "name": "../common"
+            "name": "common"
         },
         {
-            "name": "../index",
-            "exclude": ["../common"]
+            "name": "index",
+            "exclude": ["common"]
         }
     ]
 }

@@ -1,7 +1,16 @@
 // This is the runtime configuration file.  It complements the Gruntfile.js by
 // supplementing shared properties.
 require.config({
-    baseUrl: "js/libs",
+    baseUrl: "js",
+    paths: {
+        // Map dependencies.
+        "json2": "libs/json2",
+        "jquery": "libs/jquery",
+        "underscore": "libs/underscore", // Opt for Lo-Dash Underscore compatibility build over Underscore.
+        "backbone": "libs/backbone",
+        "jquery-ui": "libs/jquery-ui",
+        "jquery.dateFormat": "libs/jquery.dateFormat"
+    },
     shim: {
         // This is required to ensure Backbone works as expected within the AMD environment.
         "backbone": {

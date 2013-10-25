@@ -1,8 +1,8 @@
 // Break out the application running from the configuration definition to
 // assist with testing.
-require(["./common"], function () {
+require(["common"], function () {
     // Kick off the application.
-    require(["./app", "./router", "./library/views/library"], function (app, Router, LibraryView) {
+    require(["app", "router", "library/views/library"], function (app, Router, LibraryView) {
         var $ = require("jquery");
         var Backbone = require("backbone");
 
