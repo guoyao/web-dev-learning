@@ -24,7 +24,7 @@ module.exports = function (grunt) {
         },
 
         copy: {
-            release: {
+            dependencies: {
                 files: [
                     {
                         'public/js/libs/require.js': 'vendor/bower/requirejs/require.js',
@@ -36,6 +36,9 @@ module.exports = function (grunt) {
                         'public/js/libs/jquery.dateFormat.js': 'vendor/lib/jquery.dateFormat.js'
                     },
                 ]
+            },
+            resources: {
+                files: [{expand: true, src: ['vendor/**/images/**'], dest: 'dist'}]
             }
         },
 
@@ -58,21 +61,18 @@ module.exports = function (grunt) {
             // Out the concatenated contents of the following styles into the below
             // development file path.
             'dist/css/common.css': {
-                prefix: "./public/css/",
+                prefix: "./public/less/",
 
                 // Point this to where your `index.css` file is location.
-                src: 'public/css/common.css',
-
-                // The relative path to use for the @imports.
-                paths: ['public/css'],
+                src: 'public/less/common.less',
 
                 // Rewrite image paths during release to be relative to the `./` directory.
-                forceRelative: './'
+                forceRelative: '../'
             },
             'dist/css/index.css': {
-                prefix: "./public/css/",
-                src: 'public/css/index.css',
-                forceRelative: './'
+                prefix: "./public/less/",
+                src: 'public/less/index-wrapper.less',
+                forceRelative: '../'
             }
         },
 
@@ -220,11 +220,11 @@ module.exports = function (grunt) {
         'clean',
         'jshint',
         'bower',
-        'copy',
+        'copy:dependencies',
         'requirejs',
+        'copy:resources',
         'styles',
         'cssmin',
         'processhtml'
-//        'cssmin',
     ]);
 };
