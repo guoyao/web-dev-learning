@@ -1,4 +1,9 @@
-define(["jquery", "underscore", "backbone", "text!../../../templates/book-template.html"], function ($, _, Backbone, bookTemplate) {
+define(function () {
+    // external dependencies
+    var _ = require("underscore"),
+        Backbone = require("backbone"),
+        bookTemplate = require("text!../../../templates/book-template.html");
+
     var BookView = Backbone.View.extend({
         tagName: 'div',
         className: 'bookContainer',
@@ -17,5 +22,6 @@ define(["jquery", "underscore", "backbone", "text!../../../templates/book-templa
             this.remove();
         }
     });
+
     return BookView;
 });

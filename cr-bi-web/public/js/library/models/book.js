@@ -1,4 +1,7 @@
-define(["backbone"], function (Backbone) {
+define(function () {
+    // external dependencies
+    var Backbone = require("backbone");
+
     var Book = Backbone.Model.extend({
         defaults: {
             coverImage: 'assets/images/placeholder.jpg',
@@ -12,5 +15,6 @@ define(["backbone"], function (Backbone) {
             return response;
         }
     });
+
     return Book;
 });
