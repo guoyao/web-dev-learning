@@ -1,0 +1,18 @@
+{
+    "appDir": "public",
+    "dir": "dist",
+    "optimizeCss": "none",
+    "removeCombined": true,
+    "mainConfigFile": "public/js/config.js",
+    "findNestedDependencies": true,
+    "preserveLicenseComments": false,
+    "modules": [
+        {
+            "name": "common"
+        },
+        {
+            "name": "index",
+            "exclude": ["common"]
+        }
+    ]
+}
