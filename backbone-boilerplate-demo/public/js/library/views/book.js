@@ -1,8 +1,8 @@
-define(["jquery", "underscore", "backbone"], function ($, _, Backbone) {
+define(["jquery", "underscore", "backbone", "text!../../../templates/book-template.html"], function ($, _, Backbone, bookTemplate) {
     var BookView = Backbone.View.extend({
         tagName: 'div',
         className: 'bookContainer',
-        template: _.template($('#bookTemplate').html()),
+        template: _.template(bookTemplate),
         events: {
             'click .delete': 'deleteBook'
         },

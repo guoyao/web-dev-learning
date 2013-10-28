@@ -4,6 +4,7 @@ require.config({
     baseUrl: "js",
     paths: {
         // Map dependencies.
+        "text": "libs/text",
         "json2": "libs/json2",
         "jquery": "libs/jquery",
         "underscore": "libs/underscore", // Opt for Lo-Dash Underscore compatibility build over Underscore.

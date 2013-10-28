@@ -28,12 +28,13 @@ module.exports = function (grunt) {
                 files: [
                     {
                         'public/js/libs/require.js': 'vendor/bower/requirejs/require.js',
+                        'public/js/libs/text.js': 'vendor/bower/requirejs-text/text.js',
                         'public/js/libs/jquery.js': 'vendor/bower/jquery/jquery.js',
-                        'public/js/libs/json2.js': 'vendor/lib/json2.js',
+                        'public/js/libs/json2.js': 'vendor/libs/json2.js',
                         'public/js/libs/underscore.js': 'vendor/bower/lodash/dist/lodash.underscore.js',
                         'public/js/libs/backbone.js': 'vendor/bower/backbone/backbone.js',
                         'public/js/libs/jquery-ui.js': 'vendor/bower/jquery-ui/ui/jquery-ui.js',
-                        'public/js/libs/jquery.dateFormat.js': 'vendor/lib/jquery.dateFormat.js'
+                        'public/js/libs/jquery.dateFormat.js': 'vendor/libs/jquery.dateFormat.js'
                     },
                 ]
             },
