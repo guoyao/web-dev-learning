@@ -3,8 +3,8 @@ define(function () {
     var $ = require("jquery"),
         _ = require("underscore"),
         Backbone = require("backbone"),
-        Library = require("../collections/library"),
-        BookView = require("../views/book");
+        Library = require("modules/library/collections/library"),
+        BookView = require("modules/library/views/book");
 
     var LibraryView = Backbone.View.extend({
         el: '#books',

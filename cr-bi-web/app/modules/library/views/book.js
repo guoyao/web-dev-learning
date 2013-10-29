@@ -2,7 +2,7 @@ define(function () {
     // external dependencies
     var _ = require("underscore"),
         Backbone = require("backbone"),
-        bookTemplate = require("text!../../../templates/book-template.html");
+        bookTemplate = require("text!templates/book.html");
 
     var BookView = Backbone.View.extend({
         tagName: 'div',

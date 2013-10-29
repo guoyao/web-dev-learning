@@ -1,7 +1,7 @@
 define(function () {
     // external dependencies
     var Backbone = require("backbone"),
-        Book = require("../models/book");
+        Book = require("modules/library/models/book");
 
     var library = Backbone.Collection.extend({
         model: Book,

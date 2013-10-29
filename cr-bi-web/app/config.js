@@ -1,7 +1,7 @@
 // This is the runtime configuration file.  It complements the Gruntfile.js by
 // supplementing shared properties.
 require.config({
-    baseUrl: "js",
+    baseUrl: "./",
     paths: {
         // Map dependencies.
         "text": "libs/text",

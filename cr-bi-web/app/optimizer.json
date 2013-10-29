@@ -1,10 +1,10 @@
 {
-    "appDir": "public",
+    "appDir": "app",
     "dir": "dist",
     "optimize": "uglify2",
     "optimizeCss": "none",
     "removeCombined": true,
-    "mainConfigFile": "public/js/config.js",
+    "mainConfigFile": "app/config.js",
     "findNestedDependencies": true,
     "preserveLicenseComments": false,
     "generateSourceMaps": true,
