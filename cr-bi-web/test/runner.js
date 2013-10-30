@@ -14,7 +14,7 @@
 
     // Set the application endpoint and load the configuration.
     require.config({
-        baseUrl: "base/public/js",
+        baseUrl: "base/app",
         paths: {
             // Map dependencies.
             "underscore": "libs/underscore" // Opt for Lo-Dash Underscore compatibility build over Underscore.
@@ -24,7 +24,7 @@
     require(["config", "underscore"], function (config, _) {
 
         require.config({
-            baseUrl: "base/public/js"
+            baseUrl: "base/app"
         });
 
         var specs = _.chain(karma.files)
