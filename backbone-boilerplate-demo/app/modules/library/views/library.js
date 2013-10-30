@@ -1,4 +1,13 @@
-define(["jquery", "underscore", "backbone", "../collections/library", "../views/book"], function ($, _, Backbone, Library, BookView) {
+define(function () {
+    "use strict";
+
+    // external dependencies
+    var $ = require("jquery"),
+        _ = require("underscore"),
+        Backbone = require("backbone"),
+        Library = require("modules/library/collections/library"),
+        BookView = require("modules/library/views/book");
+
     var LibraryView = Backbone.View.extend({
         el: '#books',
         events: {

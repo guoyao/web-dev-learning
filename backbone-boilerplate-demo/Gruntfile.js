@@ -7,10 +7,10 @@ module.exports = function (grunt) {
 
         // Run your source code through JSHint's defaults.
         jshint: {
-            all: ['Gruntfile.js', 'public/js/**/*.js', 'test/<%= karma.options.frameworks[0] %>/**/*.spec.js'],
+            all: ['Gruntfile.js', 'app/**/*.js', 'test/<%= karma.options.frameworks[0] %>/**/*.spec.js'],
             options: {
                 jshintrc: '.jshintrc',
-                ignores: ['public/js/libs/**/*.js']
+                ignores: ['app/libs/**/*.js']
             }
         },
 
@@ -27,14 +27,14 @@ module.exports = function (grunt) {
             dependencies: {
                 files: [
                     {
-                        'public/js/libs/require.js': 'vendor/bower/requirejs/require.js',
-                        'public/js/libs/text.js': 'vendor/bower/requirejs-text/text.js',
-                        'public/js/libs/jquery.js': 'vendor/bower/jquery/jquery.js',
-                        'public/js/libs/json2.js': 'vendor/libs/json2.js',
-                        'public/js/libs/underscore.js': 'vendor/bower/lodash/dist/lodash.underscore.js',
-                        'public/js/libs/backbone.js': 'vendor/bower/backbone/backbone.js',
-                        'public/js/libs/jquery-ui.js': 'vendor/bower/jquery-ui/ui/jquery-ui.js',
-                        'public/js/libs/jquery.dateFormat.js': 'vendor/libs/jquery.dateFormat.js'
+                        'app/libs/require.js': 'vendor/bower/requirejs/require.js',
+                        'app/libs/text.js': 'vendor/bower/requirejs-text/text.js',
+                        'app/libs/jquery.js': 'vendor/bower/jquery/jquery.js',
+                        'app/libs/json2.js': 'vendor/libs/json2.js',
+                        'app/libs/underscore.js': 'vendor/bower/lodash/dist/lodash.underscore.js',
+                        'app/libs/backbone.js': 'vendor/bower/backbone/backbone.js',
+                        'app/libs/jquery-ui.js': 'vendor/bower/jquery-ui/ui/jquery-ui.js',
+                        'app/libs/jquery.dateFormat.js': 'vendor/libs/jquery.dateFormat.js'
                     },
                 ]
             },
@@ -46,7 +46,7 @@ module.exports = function (grunt) {
         // This task uses James Burke's excellent r.js AMD builder to take
         // modules and concatenate them into a single file.
         requirejs: {
-            options: grunt.file.readJSON('public/optimizer.json'),
+            options: grunt.file.readJSON('app/optimizer.json'),
             optimize: {
                 options: {
                     fileExclusionRegExp: /less|optimizer\.json/
@@ -62,17 +62,17 @@ module.exports = function (grunt) {
             // Out the concatenated contents of the following styles into the below
             // development file path.
             'dist/css/common.css': {
-                prefix: "./public/less/",
+                prefix: "./app/less/",
 
                 // Point this to where your `index.css` file is location.
-                src: 'public/less/common.less',
+                src: 'app/less/common.less',
 
                 // Rewrite image paths during release to be relative to the `./` directory.
                 forceRelative: '../'
             },
             'dist/css/index.css': {
-                prefix: "./public/less/",
-                src: 'public/less/index-wrapper.less',
+                prefix: "./app/less/",
+                src: 'app/less/index-wrapper.less',
                 forceRelative: '../'
             }
         },
@@ -90,7 +90,7 @@ module.exports = function (grunt) {
         processhtml: {
             release: {
                 files: {
-                    'dist/index.html': ['public/index.html']
+                    'dist/index.html': ['app/index.html']
                 }
             }
         },
@@ -149,7 +149,7 @@ module.exports = function (grunt) {
                 ],
 
                 preprocessors: {
-                    'public/js/**/*.js': 'coverage'
+                    'app/**/*.js': 'coverage'
                 },
 
                 coverageReporter: {
@@ -163,7 +163,7 @@ module.exports = function (grunt) {
                     'vendor/bower/requirejs/require.js',
                     'test/runner.js',
 
-                    { pattern: 'public/js/**/*.*', included: false },
+                    { pattern: 'app/**/*.js', included: false },
                     // Derives test framework from Karma configuration.
                     {
                         pattern: 'test/<%= karma.options.frameworks[0] %>/**/*.spec.js',
