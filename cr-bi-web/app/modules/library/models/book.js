@@ -1,4 +1,6 @@
 define(function () {
+    "use strict";
+
     // external dependencies
     var Backbone = require("backbone");
 

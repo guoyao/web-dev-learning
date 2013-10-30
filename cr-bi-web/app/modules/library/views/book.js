@@ -1,4 +1,6 @@
 define(function () {
+    "use strict";
+
     // external dependencies
     var _ = require("underscore"),
         Backbone = require("backbone"),
