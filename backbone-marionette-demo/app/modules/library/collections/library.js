@@ -7,7 +7,10 @@ define(function (require) {
 
     var library = Backbone.Collection.extend({
         model: Book,
-        url: '/api/books'
+        url: '/api/books',
+        comparator: function (book) {
+            return book.get('releaseDate');
+        }
     });
 
     return library;

@@ -5,16 +5,16 @@ require(["common"], function () {
 
     // Kick off the application.
     require(["modules/library/views/library"], function (LibraryView) {
-        var $ = require("jquery"),
-            app = require("app"),
+        var app = require("app"),
             Router = require("router");
 
         // Define your master router on the application namespace and trigger all
         // navigation from this instance.
         app.router = new Router();
 
-        $('#releaseDate').datepicker();
-        new LibraryView();
+        app.addInitializer(function () {
+            app.main.show(new LibraryView());
+        });
 
         app.start();
     });

@@ -11,6 +11,12 @@ define(function (require) {
 
     var app = new Application();
 
+    app.addRegions({
+        header: "#header",
+        main: "#main",
+        footer: "#footer"
+    });
+
     app.on("initialize:before", function (options) {
         // do something before initialize
     });
