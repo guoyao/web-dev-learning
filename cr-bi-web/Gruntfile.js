@@ -32,7 +32,8 @@ module.exports = function (grunt) {
                         'app/libs/jquery.js': 'vendor/bower/jquery/jquery.js',
                         'app/libs/json2.js': 'vendor/libs/json2.js',
                         'app/libs/underscore.js': 'vendor/bower/lodash/dist/lodash.underscore.js',
-                        'app/libs/backbone.js': 'vendor/bower/backbone/backbone.js'
+                        'app/libs/backbone.js': 'vendor/bower/backbone/backbone.js',
+                        'app/libs/backbone.marionette.js': 'vendor/bower/backbone.marionette/lib/backbone.marionette.js',
                     },
                 ]
             },
@@ -63,7 +64,7 @@ module.exports = function (grunt) {
                 prefix: "./app/less/",
 
                 // Point this to where your `index.css` file is location.
-                src: 'app/less/common.less',
+                src: 'app/less/common-wrapper.less',
 
                 // Rewrite image paths during release to be relative to the `./` directory.
                 forceRelative: '../'
@@ -71,6 +72,11 @@ module.exports = function (grunt) {
             'dist/css/index.css': {
                 prefix: "./app/less/",
                 src: 'app/less/index-wrapper.less',
+                forceRelative: '../'
+            },
+            'dist/css/login.css': {
+                prefix: "./app/less/",
+                src: 'app/less/login-wrapper.less',
                 forceRelative: '../'
             }
         },
@@ -80,7 +86,8 @@ module.exports = function (grunt) {
             release: {
                 files: {
                     'dist/css/common.min.css': ['dist/css/common.css'],
-                    'dist/css/index.min.css': ['dist/css/index.css']
+                    'dist/css/index.min.css': ['dist/css/index.css'],
+                    'dist/css/login.min.css': ['dist/css/login.css']
                 }
             }
         },
@@ -88,7 +95,8 @@ module.exports = function (grunt) {
         processhtml: {
             release: {
                 files: {
-                    'dist/index.html': ['app/index.html']
+                    'dist/index.html': ['app/index.html'],
+                    'dist/login.html': ['app/login.html']
                 }
             }
         },

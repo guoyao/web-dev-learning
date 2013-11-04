@@ -1,20 +1,21 @@
 require(["common"], function () {
     "use strict";
 
-    require(["modules/library/views/library"], function (LibraryView) {
-        var Backbone = require("backbone"),
-            app = require("app"),
-            Router = require("router");
+    require([
+        "modules/index/router",
+        "modules/index/controller",
+        "modules/index/views/main"
+    ], function (Router, Controller, IndexMainView) {
+        // load external dependencies
+        var app = require("app");
 
-        // Define your master router on the application namespace and trigger all
-        // navigation from this instance.
-        app.router = new Router();
+        app.addInitializer(function () {
+            app.main.show(new IndexMainView());
+        });
 
-        new LibraryView();
+        new Router({controller: Controller});
 
-        // Trigger the initial route and enable HTML5 History API support, set the
-        // root folder to '/' by default.  Change in app.js.
-        Backbone.history.start({ pushState: true, root: app.root });
+        app.start();
     });
 
 });

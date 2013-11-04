@@ -2,15 +2,15 @@
 define(function () {
     "use strict";
 
-    // External lib dependencies.
+    // load external lib dependencies.
     require("text");
     require("jquery");
     require("json2");
     require("underscore");
     require("backbone");
+    require("marionette");
 
-    // App common dependencies
+    // load application common dependencies
     require("config");
-    require("router");
     require("app");
 });
