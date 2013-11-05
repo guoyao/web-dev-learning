@@ -1,3 +1,6 @@
+//require.config({
+//    urlArgs: "version=" + new Date().getTime()
+//});
 require(["common"], function () {
     "use strict";
 

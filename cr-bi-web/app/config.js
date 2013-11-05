@@ -9,7 +9,8 @@ require.config({
         jquery: "libs/jquery",
         underscore: "libs/underscore", // Opt for Lo-Dash Underscore compatibility build over Underscore.
         backbone: "libs/backbone",
-        marionette: "libs/backbone.marionette"
+        marionette: "libs/backbone.marionette",
+        gui: "libs/gui"
     },
     shim: {
         // This is required to ensure Backbone works as expected within the AMD environment.
@@ -27,6 +28,10 @@ require.config({
         },
         json2: {
             exports: "json2"
+        },
+        gui: {
+            deps : ["jquery"],
+            exports : "gui"
         }
     }
 });

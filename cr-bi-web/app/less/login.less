@@ -1,1 +1,37 @@
-/*-- login page stylesheets. -----------------------------------------------*/
+/*-- login page stylesheets -----------------------------------------------*/
+@import "variables.less";
+@import "mixins.less";
+
+html, body, #main, .login {
+  height: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+.login {
+  #outer {
+    width: 100%;
+    height: 100%;
+    display: table;
+  }
+  #middle {
+    _position: absolute;
+    _top: 50%;
+    // for adaptive (quirk) explorer only
+    &[id] {
+      display: table-cell;
+      vertical-align: middle;
+      width: 100%;
+      _position: static;
+    }
+  }
+  .login-panel {
+    width: 480px;
+    _position: relative;
+    _top: -50%;
+    margin: 0 auto;
+  }
+  .gui-panel {
+    _position: relative;
+  }
+}

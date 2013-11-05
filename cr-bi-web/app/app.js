@@ -5,9 +5,11 @@ define(function (require) {
     var Backbone = require("backbone"),
         Marionette = require("marionette");
 
-    var app = new Marionette.Application();
-
-    console.log(111);
+    var Application = Marionette.Application.extend({
+        removeAllInitializers: function () {
+            this._initCallbacks = new Marionette.Callbacks();
+        }
+    }), app = new Application();
 
     app.addRegions({
         header: "#header",
@@ -17,7 +19,12 @@ define(function (require) {
 
     app.on("initialize:before", function (options) {
         // do something before initialize
-//        window.location.replace("login.html");
+        var location = window.location;
+        if (location.pathname.indexOf("login.html") == -1) {
+            app.removeAllInitializers();
+            app.off();
+            location.replace("login.html");
+        }
     });
 
     app.on("initialize:after", function (options) {
@@ -25,5 +32,4 @@ define(function (require) {
     });
 
     return app;
-
 });

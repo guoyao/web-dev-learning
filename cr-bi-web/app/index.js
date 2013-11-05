@@ -9,11 +9,11 @@ require(["common"], function () {
         // load external dependencies
         var app = require("app");
 
+        new Router({controller: Controller});
+
         app.addInitializer(function () {
             app.main.show(new IndexMainView());
         });
-
-        new Router({controller: Controller});
 
         app.start();
     });

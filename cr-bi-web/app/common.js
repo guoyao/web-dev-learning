@@ -9,6 +9,7 @@ define(function () {
     require("underscore");
     require("backbone");
     require("marionette");
+    require("gui");
 
     // load application common dependencies
     require("config");

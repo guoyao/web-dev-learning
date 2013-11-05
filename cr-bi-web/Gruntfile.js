@@ -34,6 +34,7 @@ module.exports = function (grunt) {
                         'app/libs/underscore.js': 'vendor/bower/lodash/dist/lodash.underscore.js',
                         'app/libs/backbone.js': 'vendor/bower/backbone/backbone.js',
                         'app/libs/backbone.marionette.js': 'vendor/bower/backbone.marionette/lib/backbone.marionette.js',
+                        'app/libs/gui.js': 'vendor/bower/gui/dist/js/gui.js'
                     },
                 ]
             },
@@ -53,6 +54,20 @@ module.exports = function (grunt) {
             }
         },
 
+        recess: {
+            dist: {
+                options: {
+                    compile: true,
+                    compress: false
+                },
+                files: {
+                    'dist/css/common.css': 'app/less/common.less',
+                    'dist/css/index.css': 'app/less/index.less',
+                    'dist/css/login.css': 'app/less/login.less'
+                }
+            }
+        },
+
         // This task simplifies working with CSS inside Backbone Boilerplate
         // projects.  Instead of manually specifying your stylesheets inside the
         // HTML, you can use `@imports` and this task will concatenate only those
@@ -60,23 +75,13 @@ module.exports = function (grunt) {
         styles: {
             // Out the concatenated contents of the following styles into the below
             // development file path.
-            'dist/css/common.css': {
+            'dist/css/libs.css': {
                 prefix: "./app/less/",
 
                 // Point this to where your `index.css` file is location.
-                src: 'app/less/common-wrapper.less',
+                src: 'app/less/libs.less',
 
                 // Rewrite image paths during release to be relative to the `./` directory.
-                forceRelative: '../'
-            },
-            'dist/css/index.css': {
-                prefix: "./app/less/",
-                src: 'app/less/index-wrapper.less',
-                forceRelative: '../'
-            },
-            'dist/css/login.css': {
-                prefix: "./app/less/",
-                src: 'app/less/login-wrapper.less',
                 forceRelative: '../'
             }
         },
@@ -85,6 +90,7 @@ module.exports = function (grunt) {
         cssmin: {
             release: {
                 files: {
+                    'dist/css/libs.min.css': ['dist/css/libs.css'],
                     'dist/css/common.min.css': ['dist/css/common.css'],
                     'dist/css/index.min.css': ['dist/css/index.css'],
                     'dist/css/login.min.css': ['dist/css/login.css']
@@ -205,6 +211,7 @@ module.exports = function (grunt) {
     // Grunt contribution tasks.
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-contrib-jshint');
+    grunt.loadNpmTasks('grunt-recess');
     grunt.loadNpmTasks('grunt-contrib-cssmin');
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-contrib-compress');
@@ -230,6 +237,7 @@ module.exports = function (grunt) {
         'copy:dependencies',
         'requirejs',
         'copy:resources',
+        'recess',
         'styles',
         'cssmin',
         'processhtml'
