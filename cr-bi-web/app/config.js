@@ -10,9 +10,14 @@ require.config({
         underscore: "libs/underscore", // Opt for Lo-Dash Underscore compatibility build over Underscore.
         backbone: "libs/backbone",
         marionette: "libs/backbone.marionette",
-        gui: "libs/gui"
+        gui: "libs/gui",
+        "jquery.cookie": "libs/jquery.cookie",
+        "jquery.dateFormat": "libs/jquery.dateFormat"
     },
     shim: {
+        underscore: {
+            exports : "_"
+        },
         // This is required to ensure Backbone works as expected within the AMD environment.
         backbone: {
             // These are the two hard dependencies that will be loaded first.
@@ -32,6 +37,9 @@ require.config({
         gui: {
             deps : ["jquery"],
             exports : "gui"
+        },
+        "jquery.cookie": {
+            deps : ["jquery"]
         }
     }
 });

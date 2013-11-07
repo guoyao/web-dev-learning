@@ -3,7 +3,9 @@ define(function (require) {
 
     // load external dependencies
     var Backbone = require("backbone"),
-        Marionette = require("marionette");
+        Marionette = require("marionette"),
+        appInfo = require("app_info"),
+        util = require("utils/util");
 
     var Application = Marionette.Application.extend({
         removeAllInitializers: function () {
@@ -18,12 +20,23 @@ define(function (require) {
     });
 
     app.on("initialize:before", function (options) {
-        // do something before initialize
-        var location = window.location;
-        if (location.pathname.indexOf("login.html") == -1) {
-            app.removeAllInitializers();
-            app.off();
-            location.replace("login.html");
+        var location = window.location,
+            isLogin = !!util.storage.get(appInfo.loginCookieKey),
+            isLoginPage = location.pathname.indexOf(appInfo.module.login.url) != -1;
+        if (isLogin) {
+            if (isLoginPage) {
+                app.removeAllInitializers();
+                app.off();
+                util.navigation.navigateTo(appInfo.module.index.url);
+            } else {
+                appInfo.loginInfo.update(util.storage.get(appInfo.loginCookieKey));
+            }
+        } else {
+            if (!isLoginPage) {
+                app.removeAllInitializers();
+                app.off();
+                util.navigation.navigateTo(appInfo.module.login.url);
+            }
         }
     });
 

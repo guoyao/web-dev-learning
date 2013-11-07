@@ -34,7 +34,9 @@ module.exports = function (grunt) {
                         'app/libs/underscore.js': 'vendor/bower/lodash/dist/lodash.underscore.js',
                         'app/libs/backbone.js': 'vendor/bower/backbone/backbone.js',
                         'app/libs/backbone.marionette.js': 'vendor/bower/backbone.marionette/lib/backbone.marionette.js',
-                        'app/libs/gui.js': 'vendor/bower/gui/dist/js/gui.js'
+                        'app/libs/gui.js': 'vendor/bower/gui/dist/js/gui.js',
+                        'app/libs/jquery.cookie.js': 'vendor/bower/jquery.cookie/jquery.cookie.js',
+                        'app/libs/jquery.dateFormat.js': 'vendor/libs/jquery.dateFormat-1.0.js'
                     },
                 ]
             },

@@ -2,6 +2,48 @@
 
 @import "variables.less";
 
-.helloworld {
-  background-color: @border-color;
+body {
+  background-color: #fefefe;
+  font-size: @font-size;
+  font-family: "微软雅黑", Verdana, sans-serif, "宋体";
+}
+
+input {
+  padding: @padding / 2;
+}
+
+#header, #footer {
+  padding: @padding*2 @padding*1.5;
+  border-top: @border-weight @border-type @border-color;
+  border-bottom: @border-weight @border-type @border-color;
+  background-color: @theme-color;
+}
+
+#footer {
+  padding: @padding @padding*1.5;
+}
+
+.hidden {
+  visibility: hidden;
+}
+
+.none {
+  display: none;
+}
+
+.error {
+  color: @error-text-color;
+  font-size: 0.85em;
+}
+
+.pull-left {
+  float: left;
+}
+
+.pull-right {
+  float: right;
+}
+
+.vr {
+  margin: 0 @margin;
 }

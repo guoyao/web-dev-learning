@@ -3,8 +3,7 @@ define(function () {
 
     return {
         index: function (param) {
-            param = param || "/";
-            console.log("Welcome to " + param + " route.");
+
         }
     };
 });
