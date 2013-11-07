@@ -9,7 +9,7 @@ define(function (require) {
 
     var intervalId;
 
-    var view = Marionette.CompositeView.extend({
+    var view = Marionette.ItemView.extend({
         template: template,
         ui: {
             username: "#username",

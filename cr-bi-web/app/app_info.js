@@ -26,7 +26,7 @@ define(function () {
 
     LoginInfo.prototype.update = function (loginInfo) {
         this.userInfo = loginInfo.userInfo;
-        this.loginDate = (loginInfo instanceof Date) ? loginInfo.loginDate : new Date(loginInfo.loginDate);
+        this.loginDate = (loginInfo.loginDate instanceof Date) ? loginInfo.loginDate : new Date(loginInfo.loginDate);
     };
 
     return {

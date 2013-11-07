@@ -6,7 +6,7 @@ define(function (require) {
         template = require("text!templates/common/header.html"),
         util = require("utils/util");
 
-    var view = Marionette.CompositeView.extend({
+    var view = Marionette.ItemView.extend({
         template: template,
         events: {
             "click #logoutBtn": "logout"

@@ -43,7 +43,7 @@ define(function (require) {
         };
     })(window);
 
-    // storage medium one
+    // storage medium one: implement by cookie
     var cookie = (function ($) {
         return {
             get: function (key, value, options) {
@@ -76,7 +76,7 @@ define(function (require) {
         var LoginInfo = appInfo.loginInfo.constructor;
 
         function login(userInfo) {
-            storage.set(appInfo.loginCookieKey, new LoginInfo(userInfo, new Date()));
+            storage.set(appInfo.loginCookieKey, new LoginInfo(userInfo, new Date().getTime()));
             navigation.navigateTo(appInfo.module.index.url);
         }
 
