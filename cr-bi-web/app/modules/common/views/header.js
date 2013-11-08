@@ -8,7 +8,7 @@ define(function (require) {
         util = require("utils/util"),
         NavView = require("modules/common/views/nav");
 
-    var view = Marionette.Layout.extend({
+    var Header = Marionette.Layout.extend({
         template: template,
         className: "header",
         events: {
@@ -31,5 +31,5 @@ define(function (require) {
         }
     });
 
-    return view;
+    return Header;
 });

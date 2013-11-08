@@ -7,7 +7,7 @@ define(function (require) {
         gui = require("gui"),
         util = require("utils/util");
 
-    var view = Marionette.ItemView.extend({
+    var Main = Marionette.ItemView.extend({
         template: template,
         className: "login",
         ui: {
@@ -45,5 +45,5 @@ define(function (require) {
         }
     });
 
-    return view;
+    return Main;
 });

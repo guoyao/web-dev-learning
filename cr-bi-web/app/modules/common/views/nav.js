@@ -3,19 +3,40 @@ define(function (require) {
 
     // load external dependencies
     var Marionette = require("marionette"),
+        _ = require("underscore"),
         gui = require("gui"),
-        template = require("text!templates/common/nav.html");
+        template = require("text!templates/common/nav.html"),
+        NavItemView = require("modules/common/views/nav_item"),
+        NavItemCollection = require("modules/common/collections/nav_items");
 
-    var view = Marionette.ItemView.extend({
+    var Nav = Marionette.CompositeView.extend({
         template: template,
+        itemView: NavItemView,
+        itemViewContainer: '.gui-nav',
         className: "grid-medium",
         ui: {
           menu: ".gui-nav"
         },
+        initialize: function () {
+            this.collection = new NavItemCollection();
+            this.collection.fetch();
+        },
         onShow: function () {
-            this.ui.menu.guiNav();
+            if (!this.iePatch()) {
+                this.ui.menu.guiNav();
+            }
+        },
+        iePatch: function () {
+            if (gui.browserInfo.isIE && gui.browserInfo.version <= 6) {
+                var view = this;
+                _.defer(function () {
+                    view.ui.menu.guiNav();
+                });
+                return true;
+            }
+            return false;
         }
     });
 
-    return view;
+    return Nav;
 });

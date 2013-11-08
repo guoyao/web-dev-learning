@@ -10,7 +10,7 @@ define(function (require) {
 
     var intervalId;
 
-    var view = Marionette.ItemView.extend({
+    var Footer = Marionette.ItemView.extend({
         template: template,
         className: "footer",
         ui: {
@@ -47,5 +47,5 @@ define(function (require) {
         }
     });
 
-    return view;
+    return Footer;
 });

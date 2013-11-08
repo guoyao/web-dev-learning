@@ -4,11 +4,11 @@ define(function (require) {
     // load external dependencies
     var Marionette = require("marionette");
 
-    var router = Marionette.AppRouter.extend({
+    var Router = Marionette.AppRouter.extend({
         appRoutes: {
             "*path": "login"
         }
     });
 
-    return router;
+    return Router;
 });

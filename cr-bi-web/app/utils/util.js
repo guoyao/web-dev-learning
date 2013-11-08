@@ -17,6 +17,19 @@ define(function (require) {
     })($);
 
     /**
+     * Array util module
+     */
+    var array = (function ($) {
+        function isArray(value) {
+            return $.isArray(value);
+        }
+
+        return {
+            isArray: isArray
+        };
+    })($);
+
+    /**
      * navigation util module
      */
     var navigation = (function (window) {
@@ -109,6 +122,7 @@ define(function (require) {
 
     return {
         string: string,
+        array: array,
         navigation: navigation,
         app: app,
         storage: storage,
