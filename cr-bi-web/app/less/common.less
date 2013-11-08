@@ -1,54 +1,6 @@
-/*-- application common stylesheets -----------------------------------------------*/
-
 @import "variables.less";
 
-body {
-  background-color: #fefefe;
-  font-size: @font-size;
-  font-family: "微软雅黑", Verdana, sans-serif, "宋体";
-}
-
-input {
-  padding: @padding / 2;
-}
-
-.header, .footer {
-  width: 100%;
-  position: fixed;
-  padding: @padding*2 0;
-  border-top: @border-weight @border-type @border-color;
-  border-bottom: @border-weight @border-type @border-color;
-  background-color: @theme-color;
-  #left {
-    padding-left: @padding*1.5;
-  }
-  #right {
-    position: absolute;
-    right: @padding * 1.5;
-    padding-top: 5px;
-  }
-}
-
-.header {
-  top: 0;
-}
-
-#main {
-  margin-top: @logo-large-height + @padding * 4 + @border-weight * 2 + @margin * 3;
-  margin-bottom: 32 + @border-weight * 2 + @margin * 2;
-}
-
-.footer {
-  bottom: 0;
-  height: 32px;
-  line-height: 32px;
-  padding: 0;
-  #right {
-    padding-top: 0;
-    *margin-top: -5px;
-  }
-}
-
+// ----------------------- global css hook -------------------------
 .hidden {
   visibility: hidden;
 }
@@ -74,11 +26,84 @@ input {
   margin: 0 @margin;
 }
 
+
+// ----------------------- application css hook -------------------------
+body {
+  background-color: #fefefe;
+  font-size: @font-size;
+  font-family: "微软雅黑", Verdana, sans-serif, "宋体";
+}
+
+input {
+  padding: @padding / 2;
+}
+
+.header, .footer {
+  width: 100%;
+  position: fixed;
+  border-top: @border-weight @border-type @border-color;
+  border-bottom: @border-weight @border-type @border-color;
+  background-color: @theme-color;
+  #logoSection {
+    padding: @padding*2 @padding*1.5;
+  }
+  #right {
+    position: absolute;
+    right: @padding * 1.5;
+    padding-top: 5px;
+  }
+}
+
+.header {
+  top: 0;
+}
+
+#main {
+  margin-top: @logo-large-height + @padding * 4 + @border-weight * 2 + 32 + @margin * 3; // 32 is nav's height
+  margin-bottom: 32 + @border-weight * 2 + @margin * 2;
+}
+
+.footer {
+  bottom: 0;
+  height: 32px;
+  line-height: 32px;
+  #left {
+    padding-left: @padding*1.5;
+  }
+  #right {
+    padding-top: 0;
+    *margin-top: -5px;
+  }
+}
+
+#nav {
+  background-color: @nav-theme-color;
+}
+
 .report-panel-body {
   height: @report-panel-body-height;
 }
 
-// ------ customize third lib's styles ----------
+// ------------------- customize third lib's styles ----------
 .gui-panel {
   margin-bottom: @margin * 2;
+}
+
+.gui-nav {
+  border: 0;
+  background-color: transparent;
+  ul {
+    background-color: @nav-theme-color;
+  }
+  li.active a {
+    color: #ffffff;
+    background-color: lighten(@nav-theme-color, 15%);
+  }
+  a {
+    color: #f5f5f5;
+    &:hover {
+      color: #ffffff;
+      background-color: lighten(@nav-theme-color, 15%);
+    }
+  }
 }

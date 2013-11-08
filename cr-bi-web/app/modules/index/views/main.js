@@ -5,7 +5,7 @@ define(function (require) {
     var Marionette = require("marionette"),
         template = require("text!templates/index/main.html");
 
-    var view = Marionette.CompositeView.extend({
+    var view = Marionette.ItemView.extend({
         template: template
     });
 

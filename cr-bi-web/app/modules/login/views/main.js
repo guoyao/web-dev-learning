@@ -3,12 +3,11 @@ define(function (require) {
 
     // load external dependencies
     var Marionette = require("marionette"),
-        _ = require("underscore"),
         template = require("text!templates/login/main.html"),
         gui = require("gui"),
         util = require("utils/util");
 
-    var view = Marionette.CompositeView.extend({
+    var view = Marionette.ItemView.extend({
         template: template,
         className: "login",
         ui: {
@@ -21,11 +20,8 @@ define(function (require) {
             "click #resetPasswordBtn": "resetPassword",
             "keydown input": "onKeyDown"
         },
-        onRender: function () {
-            var view = this;
-            _.defer(function () {
-                view.ui.username.focus();
-            });
+        onShow: function () {
+            this.ui.username.focus();
         },
         login: function () {
             var username = this.ui.username.val(),
