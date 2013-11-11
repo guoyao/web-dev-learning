@@ -7,7 +7,7 @@ define(function () {
     }
 
     var moduleMap = {
-        index: new ModuleDescriptor("index", "index.html", "首页"),
+        index: new ModuleDescriptor("index", "/", "首页"),
         login: new ModuleDescriptor("login", "login.html", "登陆页面")
     };
 

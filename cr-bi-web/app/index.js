@@ -8,8 +8,8 @@ require(["common"], function () {
     ], function (Router, Controller, IndexMainView) {
         // load external dependencies
         var app = require("app"),
-            HeaderView = require("modules/common/views/header"),
-            FooterView = require("modules/common/views/footer");
+            HeaderView = require("modules/common/views/header_view"),
+            FooterView = require("modules/common/views/footer_view");
 
         new Router({controller: Controller});
 

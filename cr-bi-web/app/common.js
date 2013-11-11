@@ -18,8 +18,8 @@ define(function () {
     require("app");
     require("app_info");
     require("utils/util");
-    require("modules/common/views/header");
-    require("modules/common/views/footer");
+    require("modules/common/views/header_view");
+    require("modules/common/views/footer_view");
 
     // configurations
     $.cookie.json = true;

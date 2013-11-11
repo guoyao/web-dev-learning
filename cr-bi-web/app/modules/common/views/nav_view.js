@@ -9,7 +9,7 @@ define(function (require) {
         NavItemView = require("modules/common/views/nav_item_view"),
         NavItemCollection = require("modules/common/collections/nav_item_collection");
 
-    var Nav = Marionette.CompositeView.extend({
+    var NavView = Marionette.CompositeView.extend({
         template: template,
         itemView: NavItemView,
         itemViewContainer: '.gui-nav',
@@ -38,5 +38,5 @@ define(function (require) {
         }
     });
 
-    return Nav;
+    return NavView;
 });
