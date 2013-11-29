@@ -4,13 +4,17 @@
  * Blog: http://www.guoyao.me
  */
 
-var a = 10;
+var monkey = {
+    hair: true,
+    feeds: 'bananas',
+    breathes: 'air'
+};
 
-function f() {
-    var b = a;
-    console.log(b);
-    var a = 1;
-    console.log(a);
+function Human(name) {
+    this.name = name;
 }
+Human.prototype = monkey;
 
-f();
+var george = new Human('George');
+console.log(george.prototype);
+console.log(monkey.isPrototypeOf(george));
