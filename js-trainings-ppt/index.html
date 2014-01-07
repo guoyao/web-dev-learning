@@ -5,7 +5,7 @@
 -->
 
 <!DOCTYPE html>
-<html>
+<html xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="utf-8"/>
     <title>JS Training PPT</title>
@@ -170,11 +170,26 @@
         <h1>JavaScript模块化开发 - 基础知识 - I</h1>
         <hr/>
         <p>
-            随着前段JavaScript代码越来越重，如何组织JavaScript代码变得非常重要，好的组织方式，可以让别人和自己很好的理解代码，也便于维护和测试。
-            模块化是一种非常好的代码组织方式，接下来介绍JavaScript模块化开发的一些基础知识。
+            随着网站逐渐变成"互联网应用程序"，嵌入网页的Javascript代码越来越庞大，越来越复杂，网页越来越像桌面程序，
+            需要一个团队分工协作、进度管理、单元测试等等......
         </p>
+        <p>
+            如何组织JavaScript代码变得非常重要，好的组织方式，可以让别人和自己很好的理解代码，也便于维护和测试。
+        </p>
+        <p>
+            模块化是一种非常好的代码组织方式，Javascript模块化编程，已经成为一个迫切的需求。理想情况下，开发者只需要实现核心的业务逻辑，
+            其他都可以加载别人已经写好的模块。但是，Javascript不是一种模块化编程语言，它不支持"类"（<span class="code">class</span>），
+            更别说"模块"（<span class="code">module</span>）了。
+        </p>
+        <p>
+            接下来介绍JavaScript模块化开发的一些基础知识。
+        </p>
+    </div>
+
+    <div class="step slide" data-x="-3400" data-y="3600" data-rotate="270">
         <ul>
             <li><span class="code">对象字面量</span></li>
+        </ul>
 <pre>
 var myObject = {
     variableKey : variableValue,
@@ -183,19 +198,31 @@ var myObject = {
     }
 };
 </pre>
-        </ul>
-    </div>
+        <p>
+            比较一下下面代码声明方式，使用对象字面量表示，可以减少全局变量的污染，一般来说，<span class="code">强烈建议</span>在任何时候都不要使用下面的声明方式：
+        </p>
+<pre>
+var variableName = ...;
 
-    <div class="step slide" data-x="-3400" data-y="3600" data-rotate="270">
-        <ul>
-            <li><span class="code">立即执行函数<br />（IIFE Immediately-Invoked Function Expressions）</span></li>
-        </ul>
-        立即执行函数是现在非常流行的写法，大部分JS库都使用了这种技巧，主要是防止全局变量的污染。
-        当我们在声明类似于 var name1 = function (){ … } 这样的函数时，在后面加一对括号 ()，就可以让它立即执行。
-        <p>立即执行函数可以不对外暴露私有变量，比如：</p>
+function name1(){
+    ...
+}
+function name2(){
+    ...
+}
+</pre>
     </div>
 
     <div class="step slide" data-x="-3400" data-y="2400" data-rotate="270">
+        <ul>
+            <li><span class="code">立即执行函数<br />（IIFE Immediately-Invoked Function Expressions）</span></li>
+        </ul>
+        <p>立即执行函数是现在非常流行的写法，大部分JS库都使用了这种技巧，主要是防止全局变量的污染。</p>
+        <p>当我们在声明类似于 var name1 = function (){ … } 这样的函数时，在后面加一对括号 ()，就可以让它立即执行。</p>
+        <p>立即执行函数可以不对外暴露私有变量，比如：</p>
+    </div>
+
+    <div class="step slide" data-x="-3400" data-y="1200" data-rotate="270">
 <pre>
 var myObject = {
     name : "FeeldesignStudio",
@@ -220,7 +247,294 @@ myObject.name;       //出错！
 myObject.getName();  //FeeldesignStudio
 </pre>
     </div>
-    <div id="overview" class="step" data-x="0" data-y="-1500" data-scale="2.1"></div>
+
+    <div class="step slide" data-x="-3400" data-y="0" data-rotate="270">
+        <ul>
+            <li><span class="code">导入全局变量</span></li>
+        </ul>
+        <p>把全局变量作为参数传递给一个立即执行函数，这样就完成了全局变量的导入，立即执行函数中可以使用此全局变量的方法，并可以修改（简化）全局变量的名称：</p>
+<pre>
+var myModule = (function ( jQ ) {
+
+    function method1(){
+        jQ(".container").html("test");
+    }
+
+    return{
+        publicMethod: function(){
+            method1();
+        }
+    };
+
+})( jQuery );
+
+myModule.publicMethod();
+</pre>
+    </div>
+
+    <div class="step slide" data-x="-3400" data-y="-1200" data-rotate="270">
+        <ul>
+            <li><span class="code">导出模块</span></li>
+        </ul>
+        <p>当然，有导入也可以有导出，有时我们不仅要导入全局变量，也要把模块导出到全局空间供其他模块使用。通过在立即执行函数中返回一个Object，就可以实现模块导出功能：</p>
+<pre>
+var myModule = (function () {
+
+  var module = {}, privateVariable = "Feeldesign";
+
+  function privateMethod() {
+    // ...
+  }
+
+  module.publicProperty = "FeeldesignStudio";
+  module.publicMethod = function () {
+    console.log( privateVariable );
+  };
+
+  return module;
+
+})();
+</pre>
+    </div>
+
+    <div class="step slide" data-x="-3400" data-y="-2400" data-rotate="270">
+        <ul>
+            <li><span class="code">扩展模块</span></li>
+        </ul>
+        <p>
+            在开发中，我们经常会对一些模块进行扩展，扩展当然可以直接修改模块的源代码，但是这不是一个好的方法，比如我们要给 myModule 模块增加几个方法，
+            通过前面的“立即执行函数”、“导入全局变量”、“模块导出”的知识，我们可以推导出下面的扩展方式：
+        </p>
+<pre>
+var myModule = (function ( my ) {
+
+    my.xxMethod = function () {
+        ...
+    };
+
+    return my;
+
+})( myModule );
+</pre>
+    </div>
+
+    <div class="step slide" data-x="-3400" data-y="-3600" data-rotate="270">
+        <p>
+            问题来了：上面的代码可以很好地对 myModule 进行扩展，不过前提是 myModule 必须已经定义，如果扩展的 xxMethod 方法和 myModule 本身没有任何的依赖，
+            那么要求 myModule 必须已经定义就毫无必要了，怎么解决这个问题呢，非常简单，只需要或一个空对象：
+        </p>
+<pre>
+// <span class="code">松散扩展</span>
+var myModule = (function ( my ) {
+
+    my.xxMethod = function () {
+        ...
+    };
+
+    return my;
+
+})( myModule || {} );
+</pre>
+    </div>
+
+    <div class="step slide" data-x="-2200" data-y="-3600" data-rotate="270">
+        <h1>JavaScript模块化开发 - 基础知识 - II</h1>
+        <hr/>
+        <p>
+            前面把JavaScript模块化开发的基础知识作了介绍，接下来，会进一步介绍常见的规范和针对这些规范的一些js库实现，通过这些js库，我们可以很好的将模块化开发赋予实施。
+        </p>
+    </div>
+
+    <div class="step slide" data-x="-2200" data-y="-4800" data-rotate="270">
+        <ul>
+            <li><span class="code">CommonJS规范</span></li>
+        </ul>
+        <hr/>
+        <p>
+            模块化规范，主要是为了统一模块化的编写方式，比如不同团队的Java代码，总能用<span class="code">import</span>的方式来加载，C#的话也有<span class="code">using</span>，
+            JavaScript本身没有内置的模块系统（ES6中引入了模块系统，不过等到普及可能是n年后的事情了），JavaScript的模块化规范，
+            一般都是致力于提高 JavaScript 程序的可移植性和可交换性，朝着统一模块化交互方式的方向而努力。
+        </p>
+        <p>
+            CommonJS 的目标是定义一套普通应用程序使用的API，从而填补原生JavaScript标准库过少的缺点。
+            终极目标是实现一个像python，java中含有的标准库。现在非常火爆的<span class="code">node.js</span>实际上就是CommonJS 的一个实现。
+        </p>
+    </div>
+
+    <div class="step slide" data-x="-2200" data-y="-6000" data-rotate="270">
+        <p>
+            CommonJS 标准大致如下：
+        </p>
+        <p>
+            CommonJS有一个全局性的方法 <span class="code">require</span>()，主要用于加载模块，加载后，就可以调用模块的方法；
+        </p>
+<pre>
+var math = require('math');
+
+math.add(2,3);
+</pre>
+        <p>
+            math 模块的add方法是怎么定义的呢，CommonJS还有一个全局变量<span class="code">exports</span>，它用来导入模块的方法，通过它导入的方法，便是这个模块的API，可供调用：
+        </p>
+<pre>
+// math.js
+
+exports.add = function() {
+    var sum = 0, i = 0, args = arguments, l = args.length;
+    while (i < l) {
+        sum += args[i++];
+    }
+    return sum;
+};
+</pre>
+    </div>
+
+    <div class="step slide" data-x="-2200" data-y="-7200" data-rotate="270">
+        <p>
+            在模块里，还有一个变量module，它有一个只读的id属性，还有一个uri属性。
+        </p>
+        <p>
+            其他还有一些<a href="http://wiki.commonjs.org/wiki/Modules/1.1" target="_blank">命名规范和识别规范</a>。
+        </p>
+        <p>
+            通过 CommonJS 的规范和代码可以看出，require 是<span class="code">同步</span>的，模块系统需要同步读取模块文件内容，并编译执行以得到模块接口。
+            在服务端，比如node.js，这一般来说没有问题，文件请求都是本地获取，对性能没有什么影响。但是放在浏览器端，问题就出来了，
+            等到所有模块同步加载完毕，时间不知道要过去多久了。
+        </p>
+    </div>
+
+    <div class="step slide" data-x="-2200" data-y="-8400" data-rotate="270">
+        <p>
+            CommonJS 最早叫做 ServerJS，Modules 1.0规范在node.js上实践的很好，由于知道自身在浏览器中的不足，
+            CommonJS社区把名字改为CommonJS，意为想统一服务器端和浏览器端，但是要实现浏览器端，就要有新的版本的标准，
+            在新的版本制定过程中，社区出现了分歧，在这个分歧中，分出了<span class="code">AMD规范</span>。
+        </p>
+        <p>
+            由于风格和机制的差异，最终，<span class="code">AMD</span>从CommonJS社区中独立了出来，成为了现在最受欢迎的规范。接下来的文章里，会介绍这个规范。
+        </p>
+        <p style="margin-top: 50px;">
+            <span class="code">注意，这里的AMD和做cpu的AMD可不是一回事。</span>
+        </p>
+    </div>
+
+    <div class="step slide" data-x="-2200" data-y="-9600" data-rotate="270">
+        <ul>
+            <li><span class="code">AMD规范</span></li>
+        </ul>
+        <hr/>
+        <p>
+            根据之前文章的知识，我们知道一个模块系统最起码要有下面这些功能：
+            <ul>
+                <li class="no-margin">可以创建封装的模块</li>
+                <li class="no-margin">可以定义对其他模块的依赖</li>
+                <li class="no-margin">可以导出功能，被其他模块使用</li>
+            </ul>
+        </p>
+        <p>
+            <span class="code">AMD</span>是“<span class="code">Asynchronous Module Definition</span>”的缩写，
+            意思就是“<span class="code">异步模块定义</span>”。从名称上就可以看出，它是通过异步方式加载模块的，
+            模块的加载不影响后续语句的执行，所有依赖加载中的模块的语句，都会放在一个回调函数中，等到该模块加载完成后，这个回调函数才运行。
+        </p>
+        <p>
+            AMD规范的API非常简单：
+        </p>
+<pre>
+define(id?, dependencies?, factory);
+</pre>
+    </div>
+
+    <div class="step slide" data-x="-2200" data-y="-10800" data-rotate="270">
+        <p>
+            规范定义了一个define函数，它用来定义一个模块。它包含三个参数，前两个参数都是可选的。
+            <ul>
+                <li>第一个参数 id：是一个string字符串，它表示模块的标识（也就是模块的路径，通过id才能知道从什么位置去加载依赖的模块）</li>
+                <li>第二个参数 dependencies：是一个数组，成员是依赖模块的id</li>
+                <li>第三个参数 factory：是一个回调函数，在依赖的模块加载成功后，会执行这个回调函数，它的参数是所有依赖模块的引用，如果回调函数有返回值，会导出出来</li>
+            </ul>
+        </p>
+    </div>
+
+    <div class="step slide" data-x="-2200" data-y="-12000" data-rotate="270">
+        <p>
+            一个完整的模块定义包含模块名称，模块的依赖和回调函数，比如下面的代码：
+        </p>
+<pre>
+define("adder", ["math"], function (math) {
+    return {
+        addTen : function (x) {
+            return math.add(x, 10);
+        }
+    };
+});
+</pre>
+        <p>
+            如果这个模块并没有依赖，那么默认的依赖是["require", "exports", "module"]，这时模块可以改写为：
+        </p>
+<pre>
+define("adder", function (require, exports) {
+    exports.addTen = function (x) {
+        return x + 10;
+    };
+});
+</pre>
+    </div>
+
+    <div class="step slide" data-x="-2200" data-y="-13200" data-rotate="270">
+        <p>
+            如果省略第一个参数，则会定义一个<span class="code">匿名模块</span>，见代码：
+        </p>
+<pre>
+define(["math"], function (math) {
+    return {
+        addTen : function (x) {
+            return math.add(x, 10);
+        }
+    };
+});
+</pre>
+        <p>
+            在实际中，<span class="code">使用的更多的是匿名模块定义方式</span>，因为这样更加的灵活，模块的标识和它的源代码不再相关，开发人员可以把这个模块放在任意的位置而不需要修改代码。
+            一般只有在要使用工具打包模块到一个文件中时，才会声明第一个参数，所以应该尽量避免给模块命名。
+        </p>
+
+    </div>
+
+    <div class="step slide" data-x="-2200" data-y="-14400" data-rotate="270">
+        <p>
+            在写模块的时候，也有可能没有依赖或者稍后才需要加载依赖，也就是说我们可以省略第一个和第二个参数，下面代码展示了这种用法，这也是CommonJS的写法，算是一种兼容：
+        </p>
+<pre>
+define(function (require, exports, module) {
+
+    ……
+
+    var a = require('a'),
+        b = require('b');
+
+    exports.action = function () {
+        ……
+    };
+});
+</pre>
+        <p>
+            注意上述回调函数里的require的使用将被自动进行动态加载。
+        </p>
+    </div>
+
+    <div class="step slide" data-x="-2200" data-y="-15600" data-rotate="270">
+        <p>
+            到现在，下面这些库都实现了AMD规范：
+            <ul>
+                <li><span class="code">RequireJS</span></li>
+                <li><span class="code">curl</span></li>
+                <li><span class="code">lsjs</span></li>
+                <li><span class="code">Dojo 1.7+</span></li>
+            </ul>
+            还有很多js库都支持了AMD规范，自己作为一个模块而存在，比如<span class="code">jQuery</span>，<span class="code">MooTools</span>等，
+            所以AMD规范基本上已经是非常普及了，成为了事实上的标准。
+        </p>
+    </div>
+    <div id="overview" class="step" data-x="-1200" data-y="-1200" data-scale="7" data-rotate="-90"></div>
 </div>
 <script type="text/javascript" src="js/impress.js"></script>
 <script type="text/javascript">
