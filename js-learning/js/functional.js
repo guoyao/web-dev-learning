@@ -51,4 +51,21 @@
     console.debug(Person.age);
 //    var person = new Person();
 
+    function substitute(value) {
+        if (value) {
+            var args = arguments,
+                pattern = new RegExp("{([0-" + (arguments.length - 2) + "])}", "g");
+
+            return value.replace(pattern, function (match, index) {
+                console.log(match);
+                console.log(index);
+                return  args[parseInt(index, 10) + 1];
+            });
+        }
+
+        return value;
+    }
+
+    console.log(substitute("{1}//{0}#/index", window.location.protocol, window.location.host));
+
 })(window);

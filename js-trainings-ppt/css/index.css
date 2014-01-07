@@ -1,0 +1,58 @@
+/**
+ * Author: guoyao
+ * Time: 08-21-2013 13:46
+ * Blog: http://www.guoyao.me
+ */
+
+ul {
+    list-style-type: disc;
+}
+
+li {
+    margin-bottom: 25px;
+}
+
+li.no-margin {
+    margin-bottom: 0;
+}
+
+h1 {
+    font-weight: bold;
+}
+
+hr {
+    border-color: #d1d1d1;
+}
+
+.grid {
+    width: 100%;
+}
+
+.bordered {
+    padding: 8px 8px 0;
+    border: 1px solid #d1d1d1;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
+}
+
+pre {
+    font-size: 20px;
+}
+
+.code {
+    padding: 2px 4px;
+    color: #c7254e;
+    white-space: nowrap;
+    background-color: #f9f2f4;
+    border-radius: 4px;
+}
+
+.topic-title {
+    text-align: center;
+    margin-top: 200px;
+}
+
+h1.topic-title {
+    font-size: 50px;
+}

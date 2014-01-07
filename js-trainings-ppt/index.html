@@ -1,0 +1,230 @@
+<!--
+  Author: guoyao
+  Time: 08-21-2013 13:36
+  Blog: http://www.guoyao.me
+-->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>JS Training PPT</title>
+    <link rel="stylesheet" type="text/css" href="css/impress-demo.css"/>
+    <link rel="stylesheet" type="text/css" href="css/graceful-web-ui.min.css"/>
+    <link rel="stylesheet" type="text/css" href="css/index.css"/>
+</head>
+<body>
+<div id="impress-not-supported">
+    <div class="fallback-message">
+        <p>你的浏览器<b>不支持</b> impress-bcc.js, 所以当前展示的是简化版。</p>
+
+        <p>为了获得更好的体验，请使用最新的 <b>Chrome</b>, <b>Safari</b> 或者 <b>Firefox</b> 浏览器。</p>
+    </div>
+</div>
+<div id="impress">
+    <div class="step slide" data-x="0" data-y="0">
+        <h1 class="topic-title">前端开发知识 - 基础篇</h1>
+        <h2 class="topic-title">By Guoyao Wu</h2>
+    </div>
+    <div class="step slide" data-x="0" data-y="1200" data-rotate="90">
+        <h1>Less简介 - I</h1>
+        <hr/>
+        <p>
+            Less是一种动态样式语言，属于CSS预处理语言的一种，它使用类似CSS的语法，为CSS的赋予了动态语言的特性，如变量、继承、运算、函数等，更方便CSS的编写和维护。
+        </p>
+
+        <p>
+            Less可以在多种语言、环境中使用，包括浏览器端、桌面客户端、服务端。
+        </p>
+    <pre>
+.<span class="code">make-column-fluid-offset</span>(@column) {
+  @grid-content-width: @grid-total-width - @grid-gutter-width;
+  @grid-column-width: @grid-total-width / @grid-columns - @grid-gutter-width;
+  <span class="code">margin-left</span>: <span class="code">percentage</span>((@grid-column-width * @column + (@column + 1) * @grid-gutter-width) / @grid-content-width);
+}</pre>
+    <pre>
+.row-fluid .offset1 {
+  .<span class="code">make-column-fluid-offset</span>(1);
+}</pre>
+    </div>
+
+    <div class="step slide" data-x="0" data-y="2400" data-rotate="90">
+        <h1>Less简介 - II</h1>
+        <hr/>
+    <pre style="font-size: 14px;">
+.gui-breadcrumb {
+  padding: 8px 15px;
+  margin-bottom: @line-height-computed;
+  list-style: none;
+  background-color: @breadcrumb-bg;
+  border-radius: @border-radius-base;
+  > li {
+    display: inline-block;
+    &+li:before {
+      content: "/\00a0"; // Unicode space added since inline-block means non-collapsing white-space
+      padding: 0 5px;
+      color: @breadcrumb-color;
+    }
+    &+li.gui-with-seperator:before {
+      content: none;
+      padding: 0;
+    }
+  }
+  > .active {
+    color: @breadcrumb-active-color;
+  }
+  .gui-breadcrumb-sperator {
+    color: @breadcrumb-color;
+    padding: 0 5px;
+  }
+}</pre>
+    </div>
+
+    <div class="step slide" data-x="-1000" data-y="2400" data-rotate="90">
+        <h1>Bower简介 - I</h1>
+        <hr/>
+
+        <p>
+            Bower 是 twitter 推出的一款包管理工具，基于node.js的模块化思想，把功能分散到各个模块中，让模块和模块之间存在联系，通过 Bower 来管理模块间的这种联系。
+        </p>
+
+        <p>
+            包管理工具一般有以下的功能：
+        <ul>
+            <li>
+                <span class="code">注册机制</span>：每个包需要确定一个唯一的 ID 使得搜索和下载的时候能够正确匹配，所以包管理工具需要维护注册信息，可以依赖其他平台。
+            </li>
+            <li>
+                <span class="code">文件存储</span>：确定文件存放的位置，下载的时候可以找到，当然这个地址在网络上是可访问的。
+            </li>
+            <li>
+                <span class="code">上传下载</span>：这是工具的主要功能，能提高包使用的便利性。比如想用 jquery 只需要 install
+                一下就可以了，不用到处找下载。上传并不是必备的，根据文件存储的位置而定，但需要有一定的机制保障。
+            </li>
+        </ul>
+        </p>
+    </div>
+
+    <div class="step slide" data-x="-1000" data-y="3600" data-rotate="90">
+        <h1>Bower简介 - II</h1>
+        <hr/>
+
+        <ul>
+            <li>
+                <span class="code">依赖分析</span>：这也是包管理工具主要解决的问题之一，既然包之间是有联系的，那么下载的时候就需要处理他们之间的依赖。下载一个包的时候也需要下载依赖的包。
+            </li>
+        </ul>
+
+        <p>
+            通过 Bower 来安装GUI: <code>bower install gui</code>
+        </p>
+
+        <p>
+            通过 bower search 命令来查找，如：<code>bower search gui</code>
+
+        <div class="bordered" style="margin-bottom: 6px;">
+            <img src="assets/images/bower-search.png"/>
+        </div>
+        通过 bower info 命令来查看package的信息，如：<code>bower info gui</code>
+
+        <div class="bordered" style="margin-top: 6px;">
+            <img src="assets/images/bower-info.png"/>
+        </div>
+        </p>
+    </div>
+
+    <div class="step slide" data-x="-1000" data-y="4800" data-rotate="90">
+        <h1>Bower简介 - III</h1>
+        <hr/>
+
+        <ul>
+            <li>
+                cr-bi-web 的 bower.json 文件内容如下：
+            </li>
+        </ul>
+    <pre>
+{
+    "name": "cr-bi-web",
+    "version": "3.0.0",
+    "dependencies": {
+        "lodash": "~2.2.1",
+        "jquery": "<2.0.0",
+        "backbone.marionette": "~1.2.1",
+        "requirejs": "~2.1.9",
+        "gui": ">=0.1.0",
+        ...
+    },
+    "devDependencies": {
+        "mocha": "~1.13.0",
+        "chai": "~1.8.1"
+    }
+}</pre>
+    </div>
+
+    <div class="step slide" data-x="-2200" data-y="4800" data-rotate="180">
+        <h1 class="topic-title">JS模块化开发及代码管理</h1>
+        <h2 class="topic-title">By Guoyao Wu</h2>
+    </div>
+
+    <div class="step slide" data-x="-3400" data-y="4800" data-rotate="270">
+        <h1>JavaScript模块化开发 - 基础知识 - I</h1>
+        <hr/>
+        <p>
+            随着前段JavaScript代码越来越重，如何组织JavaScript代码变得非常重要，好的组织方式，可以让别人和自己很好的理解代码，也便于维护和测试。
+            模块化是一种非常好的代码组织方式，接下来介绍JavaScript模块化开发的一些基础知识。
+        </p>
+        <ul>
+            <li><span class="code">对象字面量</span></li>
+<pre>
+var myObject = {
+    variableKey : variableValue,
+    functionKey : function() {
+       ...
+    }
+};
+</pre>
+        </ul>
+    </div>
+
+    <div class="step slide" data-x="-3400" data-y="3600" data-rotate="270">
+        <ul>
+            <li><span class="code">立即执行函数<br />（IIFE Immediately-Invoked Function Expressions）</span></li>
+        </ul>
+        立即执行函数是现在非常流行的写法，大部分JS库都使用了这种技巧，主要是防止全局变量的污染。
+        当我们在声明类似于 var name1 = function (){ … } 这样的函数时，在后面加一对括号 ()，就可以让它立即执行。
+        <p>立即执行函数可以不对外暴露私有变量，比如：</p>
+    </div>
+
+    <div class="step slide" data-x="-3400" data-y="2400" data-rotate="270">
+<pre>
+var myObject = {
+    name : "FeeldesignStudio",
+    getName : function(){
+        return this.name;
+    }
+};
+
+myObject.name;       //FeeldesignStudio
+myObject.getName();  //FeeldesignStudio
+
+var myObject = (function(){
+    var name = "FeeldesignStudio";
+    return {
+        getName : function(){
+            return name;
+        }
+    }
+})();
+
+myObject.name;       //出错！
+myObject.getName();  //FeeldesignStudio
+</pre>
+    </div>
+    <div id="overview" class="step" data-x="0" data-y="-1500" data-scale="2.1"></div>
+</div>
+<script type="text/javascript" src="js/impress.js"></script>
+<script type="text/javascript">
+    impress().init();
+</script>
+</body>
+</html>
