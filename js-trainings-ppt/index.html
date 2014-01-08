@@ -534,6 +534,233 @@ define(function (require, exports, module) {
             所以AMD规范基本上已经是非常普及了，成为了事实上的标准。
         </p>
     </div>
+
+    <div class="step slide" data-x="-2200" data-y="-16800" data-rotate="270">
+        <ul>
+            <li><span class="code">RequireJS</span></li>
+        </ul>
+        <hr/>
+        <p>
+            RequireJS 是一个JavaScript文件和模块加载器，它主要用于浏览器端，但也可以适用于<span class="code">Rhino</span> / <span class="code">Node</span> 等环境。
+            RequireJS遵循了AMD规范，使用非常广泛。
+        </p>
+        <p>
+            之前已经介绍了JavaScript模块化开发的一些基础知识和规范。接下来主要说一说RequireJS的使用。
+        </p>
+        <P>
+            基本项目结构看上去应该是：
+            <div class="bordered" style="margin-bottom: 6px;">
+                <img src="assets/images/basic-project-structure.gif"/>
+            </div>
+        </P>
+    </div>
+
+    <div class="step slide" data-x="-2200" data-y="-18000" data-rotate="270">
+        <p>
+            要充分使用RequireJS，在 index.html 文件中，应该把所有的内联脚本都移除，只留下一句话：
+        </p>
+<pre>
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+&nbsp;&nbsp; &lt;title&gt;My Sample Project&lt;/title&gt;
+&nbsp;&nbsp; &lt;!-- data-main 属性告诉require.js在require.js&nbsp;加载之后加载js/main.js --&gt;
+&nbsp;&nbsp; &lt;script <span class="code">data-main</span>="js/main" src="<span class="code">js/require.js</span>"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</pre>
+        <p>
+            在 main.js 中，可以通过 require() 加载依赖的脚本，这样不用在 html 中显示声明。main.js 相当于是一个入口点：
+        </p>
+<pre>
+require(["helper/util"], function (util) {
+    // 当 helper/util.js 加载完毕，会执行这个回调函数
+    // 如果 util.js 也声明了依赖的文件（模块），那么这个函数会等到那些依赖的文件（模块）加载完毕后才调用
+});
+</pre>
+    </div>
+
+    <div class="step slide" data-x="-2200" data-y="-19200" data-rotate="270">
+        <p>
+            <h2>RequireJS API</h2>
+        </p>
+        <hr/>
+        <ul>
+            <li><span class="code">加载js文件</span></li>
+        </ul>
+        <p>
+            通过刚才的介绍，可以看出来 RequireJS 采用了不同于传统 &lt;script&gt; 标签的加载方式，传统的 &lt;script&gt; 标签方式一般都会有下面的代码：
+        </p>
+<pre>
+&lt;script type="text/javascript" src="js/jquery.js"&gt;&lt;/script&gt;
+&lt;script type="text/javascript" src="js/jquery.plugin.xx.js"&gt;&lt;/script&gt;
+&lt;script type="text/javascript" src="js/a1.js"&gt;&lt;/script&gt;
+&lt;script type="text/javascript" src="js/a2.js"&gt;&lt;/script&gt;
+&lt;script type="text/javascript" src="js/a3.js"&gt;&lt;/script&gt;
+</pre>
+        <p>
+            这样的代码极复杂又难以维护。RequireJS 采用了模块<span class="code">ID</span>的方式替代了通过URL加载脚本的方式，还记得那句声明么：
+        </p>
+<pre>
+&lt;script <span class="code">data-main</span>="js/main" src="js/require.js"&gt;&lt;/script&gt;
+</pre>
+    </div>
+
+    <div class="step slide" data-x="-2200" data-y="-20400" data-rotate="270">
+        <p>
+            RequireJS 查找脚本的路径，主要是通过 <span class="code">baseUrl</span>，在 data-main 中，声明了 baseUrl 的路径，在这句代码里也就是 js 文件夹；
+            如果不声明 data-main，则 baseUrl 默认指向这个 html 页面所在的文件夹。当然，也可以通过配置来声明 baseUrl，下文会详述。
+        </p>
+        <p>
+            <em><span class="code">注意：</span>data-main 中声明的模块会被异步加载，也就意味着如果页面后面通过 &lt;script&gt; 加载多个脚本，
+            这些脚本不一定在 data-main 中声明的模块加载之后才加载；或者后面的js代码如果有对 data-main 中声明的模块的依赖，
+            则有可能会出现错误。</em>
+        </p>
+        <p>
+            RequireJS 会假定所有依赖项默认都是脚本，所以书写依赖时可以省略 “.js” 后缀，RequireJS 会自动加上这个后缀。
+            RequireJS 会自动把模块ID翻译成一个路径（<span class="code">path</span>），我们也可以在配置中声明多个路径（paths），
+            通过 <span class="code">baseUrl + paths</span>，可以用很少的代码找到相应的 js 文件，比起 &lt;script&gt; 标签要优雅简洁很多。
+        </p>
+    </div>
+
+    <div class="step slide" data-x="-2200" data-y="-21600" data-rotate="270">
+        <p>
+            一般来说，通过 baseUrl + paths 就可以找到js文件，不过有时候，可能会有例外，一旦 RequireJS 发现模块 ID 中包含如下的字符，
+            那么它就不按照 baseUrl + paths 的方式来寻找这个模块的js文件了，而是采用 URL 的方式：
+            <ul>
+                <li><span class="code">如果 ID 以 “.js” 结尾</span></li>
+                <li><span class="code">如果 ID 以 “/” 开头</span></li>
+                <li><span class="code">如果 ID 以 “http:” 或者 “https:” 开头</span></li>
+            </ul>
+            一般来说，最好使用 baseUrl + paths 的方式来声明模块ID，这样做会有更多的灵活性。同样的，我们在组织js代码文件的时候，
+            最好把js文件都放置在 baseUrl 下面，下面就是一个很好的例子：
+        </p>
+    </div>
+    <div class="step slide" data-x="-2200" data-y="-22800" data-rotate="270">
+<pre>
+www/
+    index.html
+    js/
+        app/
+            sub.js
+        lib/
+            jquery.js
+            canvas.js
+        app.js
+</pre>
+        <p>
+            在 index.html 中：
+        </p>
+<pre>
+&lt;script <span class="code">data-main</span>="js/app.js" src="js/require.js"&gt;&lt;/script&gt;
+</pre>
+    </div>
+    <div class="step slide" data-x="-2200" data-y="-24000" data-rotate="270">
+        <p>
+            在 app.js 中：
+        </p>
+<pre>
+requirejs.config({
+    //默认从 js/lib 中加载模块
+    baseUrl : 'js/lib',
+
+    //如果模块ID以app开头，则会在 js/app 目录下寻找
+    //不过要注意千万不要加上 ".js"，否则paths的规则就会失效
+    paths : {
+        app : '../app'
+    }
+});
+
+requirejs(['jquery', 'canvas', 'app/sub'],
+    function ($, canvas, sub) {
+        //jQuery, canvas 和 app/sub 模块都加载完毕后，会执行这个函数
+
+        //TODO
+    });
+</pre>
+    </div>
+    <div class="step slide" data-x="-2200" data-y="-25200" data-rotate="270">
+        <ul>
+            <li><span class="code">定义模块</span></li>
+        </ul>
+        <p>
+            RequireJS 要求一个js文件只定义一个模块。不过这样的话，每加载一个模块，就会产生一个HTTP请求，
+            RequireJS 提供了一个优化工具，在最后生产环境中，可以打包所有模块到一个文件中。
+        </p>
+        <p>
+            定义模块可以使用 define() 方法，define() 有三个参数，可以参考前文中的介绍。
+        </p>
+        <p>
+            定义一个只有键值对，没有任何依赖的模块：
+        </p>
+<pre>
+define(function () {
+    //TODO
+
+    return {
+        color : "black",
+        size : "M"
+    }
+});
+</pre>
+    </div>
+    <div class="step slide" data-x="-2200" data-y="-26400" data-rotate="270">
+        <p>
+            定义一个有依赖的函数，第一个参数是依赖的模块ID数组，后面是回调函数，会在所有依赖加载完毕后执行：
+        </p>
+<pre>
+define(["cart"], function (cart) {
+    return {
+        color : "blue",
+        size : "M",
+        addToCart : function () {
+            cart.add(this);
+        }
+    }
+});
+</pre>
+        <p>
+            当然不一定只是返回Object，也可以返回一个函数：
+        </p>
+<pre>
+define(["cart"], function (cart) {
+    return function (title) {
+        return title ? (window.title = title) : cart.name;
+    }
+});
+</pre>
+        <p>
+            更多的API可以参考<a href="http://requirejs.org/docs/api.html" target="_blank">官方说明</a>。
+        </p>
+    </div>
+    <div class="step slide" data-x="-2200" data-y="-27600" data-rotate="270">
+        <ul>
+            <li><span class="code">加载非规范的模块</span></li>
+        </ul>
+        <p>
+            在加载没有实现AMD规范的模块（这种模块比实现了AMD规范的模块更多）时，RequireJS 也提供了简洁的方式，就是通过配置定义这些模块的特征，比如：
+        </p>
+<pre>
+requirejs.config({
+    ...
+    // 要使用 shim 来配置没有实现 AMD 规范的模块
+    // 不过注意 shim 不能用来配置已经实现 AMD 规范的模块
+    <span class="code">shim</span> : {
+        'backbone' : {
+            //定义依赖，会在 backbone.js 载入前载入这些依赖
+            <span class="code">deps</span> : ['underscore', 'jquery'],
+            //导出 Backbone
+            <span class="code">exports</span> : 'Backbone'
+        },
+        'underscore' : {
+            <span class="code">exports</span> : '_'
+        }
+    }
+});
+</pre>
+    </div>
     <div id="overview" class="step" data-x="-1200" data-y="-1200" data-scale="7" data-rotate="-90"></div>
 </div>
 <script type="text/javascript" src="js/impress.js"></script>
