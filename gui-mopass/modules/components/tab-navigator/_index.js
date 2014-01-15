@@ -1,0 +1,1 @@
+require(["jquery","prettify","gui"],function(e,t){e(".gui-tab").guiTab();var n=setTimeout(function(){clearTimeout(n),e("[data-target=#tab3]").guiTab("show")},2e3);t.prettyPrint()});

@@ -1,0 +1,1 @@
+require(["./common"],function(e){require(["app/javascript-main"])}),define("../javascript",[],function(){}),define("app/javascript-main",["./demo"],function(e){var t=e.Module;(new e.Initializer([new t("Affix","affix"),new t("Collapse","collapse")],{modulesDirectory:"modules/javascript"})).init()});

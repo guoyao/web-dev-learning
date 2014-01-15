@@ -1,0 +1,1 @@
+require(["jquery","prettify","gui"],function(e,t){e(".place-holder-input").guiPlaceholder(),t.prettyPrint()});

@@ -1,0 +1,1 @@
+require(["jquery","prettify","gui"],function(e,t){e("#autocomplete-input").guiAutocomplete({data:["111","111","222","333","444"]}),t.prettyPrint()});

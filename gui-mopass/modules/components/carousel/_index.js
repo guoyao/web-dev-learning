@@ -1,0 +1,1 @@
+require(["jquery","prettify","gui"],function(e,t){e("#myCarousel").guiCarousel(),t.prettyPrint()});
