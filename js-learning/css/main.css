@@ -3,3 +3,20 @@
  * Time: 07-24-2013 16:43
  * Blog: http://www.guoyao.me
  */
+
+h1:hover:after {
+    content: attr(data-hover-response);
+    color: black;
+    position: absolute;
+    left: 0;
+}
+
+input[type=range]:before {
+    content: attr(min);
+    padding-right: 5px;
+}
+
+input[type=range]:after {
+    content: attr(max);
+    padding-left: 5px;
+}

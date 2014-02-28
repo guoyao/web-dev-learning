@@ -2,12 +2,21 @@
 <html>
 <head>
     <title>Js Learning</title>
-    <style type="text/css">
+    <style rel="stylesheet">
         .step {
-            width: 900px;
-            height: 700px;
+            width: 300px;
+            height: 200px;
             padding: 50px;
             border: 1px solid red;
+        }
+
+        .m_portrait div {
+            background: url(http://www.lagou.com:80/images/profile_cover.png) no-repeat;
+            width: 120px;
+            height: 120px;
+            position: absolute;
+            z-index: 5;
+            _background: none;
         }
     </style>
     <link rel="stylesheet" type="text/css" href="css/normalize.css"/>
@@ -24,12 +33,45 @@
         first step
     </div>
 
+    <!--<form action="#" method="post">-->
+        <input id="username" type="text">
+        <input id="password" type="password" value="123456">
+        <input type="submit"/>
+    <!--</form>-->
+
+    <input id="showButton" type="button" value="show">
+    <!--<img alt="fdsafasdf" title="11111" src="javascript:location.href='http://baidu.com/'"/>-->
+
+    <h1 data-hover-response="I Said Don't Touch Me!"> Don't Touch Me  </h1>
+    <input type="range" name="range" min="0" max="10" step="1" value="">
+    <p> They were interrupted, just after Quato said, <mark>"Open your Mind"</mark>. </p>
+    <div class="m_portrait">
+        <div></div>
+        <img src="http://www.lagou.com/upload/headpic/ff808081441c15ce01441c33d2600d20.jpg" width="120" height="120"/>
+    </div>
+
     <!--<script type="text/javascript" src="js/prototype.js"></script>-->
     <script type="text/javascript" src="js/jquery-1.10.2.js"></script>
     <script type="text/javascript" src="js/helper.js"></script>
     <!--<script type="text/javascript" src="js/main.js"></script>-->
     <!--<script type="text/javascript" src="js/functional.js"></script>-->
     <!--<script type="text/javascript" src="js/object-oriented-js-learning.js"></script>-->
-    <script type="text/javascript" src="js/deferred-learning.js"></script>
+    <!--<script type="text/javascript" src="js/deferred-learning.js"></script>-->
+    <script type="text/javascript">
+        (function (window, $) {
+            if (!window.console) {
+                window.console = {
+                    log: function (message) {
+                        alert(message);
+                    }
+                }
+            }
+            console.log(document.compatMode);
+            $("#showButton").on("click", function () {
+                var address = document.getElementById("address");
+                console.log(address.value);
+            });
+        })(window, jQuery);
+    </script>
 </body>
 </html>

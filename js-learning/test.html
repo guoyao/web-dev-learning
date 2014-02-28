@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>test</title>
+    <style rel="stylesheet">
+        body {
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 300px;
+            height: 300px;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            margin-left: -157px;
+            margin-top: -157px;
+            border: 1px solid #000;
+            padding: 6px;
+        }
+
+        .header {
+            height: 15%;
+            background-color: #123456;
+        }
+
+        .body {
+            height: 85%;
+            background: -webkit-gradient(radial, 150 150, 150, 150 1, 0, from(black), to(white));
+            background: -moz-radial-gradient(150 150, 150, 150 1, 0, from(black), to(white));
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header draggable"></div>
+    <div class="body"></div>
+</div>
+<script>
+    var EventUtil = {
+        addHandler: function (element, type, handler) {
+            if (element.addEventListener) {
+                element.addEventListener(type, handler, false);
+            } else if (element.attachEvent) {
+                element.attachEvent("on" + type, handler);
+            } else {
+                element["on" + type] = handler;
+            }
+        },
+        removeHandler: function (element, type, handler) {
+            if (element.removeEventListener) {
+                element.removeEventListener(type, handler, false);
+            } else if (element.detachEvent) {
+                element.detachEvent("on" + type, handler);
+            } else {
+                element["on" + type] = null;
+            }
+        },
+        getEvent: function (event) {
+            return event || window.event;
+        },
+        getTarget: function (event) {
+            return event.target || event.srcElement;
+        }
+    };
+    var Drag = (function () {
+        var drag = null;
+        var diffX = 0;
+        var diffY = 0;
+
+        function move(event) {
+            var e = EventUtil.getEvent(event);
+            var target = EventUtil.getTarget(e);
+            switch (e.type) {
+                case "mousedown":
+                    if (target.className.indexOf("draggable") > -1) {
+                        drag = target;
+                        diffX = e.clientX - target.parentNode.offsetLeft;
+                        diffY = e.clientY - target.parentNode.offsetTop;
+                    }
+                    break;
+                case "mousemove":
+                    if (drag !== null) {
+                        drag.parentNode.style.left = (e.clientX - diffX) + "px";
+                        drag.parentNode.style.top = (e.clientY - diffY) + "px";
+                    }
+                    break;
+                case "mouseup":
+                    drag = null;
+                    break;
+            }
+        }
+
+        return {
+            enable: function () {
+                EventUtil.addHandler(document, "mousedown", move);
+                EventUtil.addHandler(document, "mousemove", move);
+                EventUtil.addHandler(document, "mouseup", move);
+            },
+            disable: function () {
+                EventUtil.removeHandler(document, "mousedown", move);
+                EventUtil.removeHandler(document, "mousemove", move);
+                EventUtil.removeHandler(document, "mouseup", move);
+            }
+        }
+    })();
+    Drag.enable();
+</script>
+</body>
+</html>
