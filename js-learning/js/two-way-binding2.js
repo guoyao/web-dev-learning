@@ -21,10 +21,8 @@
             }
         },
         Class = (function () {
-            var tempFunc = function () {
-                },
-                emptyInitializeFunc = function () {
-                };
+            var tempFunc = function () {},
+                emptyInitializeFunc = function () {};
 
             function Class() {
                 var superclass = null,
@@ -131,13 +129,12 @@
             }
         }),
         User = new Class(Bindable),
-        user = new User("user"),
-        changeModelPropertyButton = document.getElementById("changeModelPropertyButton");
+        user = new User("user");
 
     user.set("name", "hello world");
 
-    changeModelPropertyButton.addEventListener("click", function () {
+    EventUtil.on(document.getElementById("changeModelPropertyButton"), "click", function () {
         user.set("name", "hello " + Math.round(Math.random() * 100));
-    }, false);
+    });
 
 })();
