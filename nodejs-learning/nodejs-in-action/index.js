@@ -1,13 +1,24 @@
-var https = require('https');
-var fs = require('fs');
+var connect = require('connect');
 
-var options = {
-    key: fs.readFileSync('./key.pem'),
-    cert: fs.readFileSync('./key-cert.pem')
-};
+var app = connect()
+    .use(logger)
+    .use('/admin', admin)
+    .use(hello)
+    .listen(3000);
 
-var server = https.createServer(options, function(req, res) {
-    res.writeHead(200);
-    res.end('Hello World\n');
-});
-server.listen(3000);
+function logger(req, res, next) {
+    console.log(req.url);
+    next();
+}
+
+function admin(req, res, next) {
+    console.log('admin page');
+    next();
+}
+
+function hello(req, res) {
+    res.end('hello world\n');
+}
+
+console.log('server start on port: %s', 3000);
+
