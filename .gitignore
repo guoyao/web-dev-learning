@@ -16,7 +16,8 @@ target
 .classpath
 .project
 .settings
-bin
+.log
+# bin
 node_modules
 vendor/bower
 test/coverage
