@@ -16,7 +16,7 @@ target
 .classpath
 .project
 .settings
-.log
+*.log
 # bin
 node_modules
 vendor/bower
