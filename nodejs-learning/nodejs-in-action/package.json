@@ -1,8 +1,0 @@
-{
-    "name": "nodejs-in-action",
-    "version": "0.1.0",
-    "description": "nodejs-in-action",
-    "dependencies": {
-        "express": "*"
-    }
-}

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  </head>
+  <body>
+    <p>
+      Current server time is: <b><span id="time"></span></b>
+    </p>
+    <script type="text/javascript" src="/socket.io/socket.io.js"></script>
+    <script type="text/javascript">
+        var socket = io.connect();
+        socket.on('message', function(time) {
+            document.getElementById('time').innerHTML= time;
+        });
+        socket.on('custom-event', function(data) {
+            console.log(data);
+        });
+    </script>
+  </body>
+</html>
+
