@@ -6,15 +6,24 @@
     <p>
       Current server time is: <b><span id="time"></span></b>
     </p>
+    <input id="send-message-btn" type="button" value="Send Message">
     <script type="text/javascript" src="/socket.io/socket.io.js"></script>
     <script type="text/javascript">
-        var socket = io.connect();
-        socket.on('message', function(time) {
-            document.getElementById('time').innerHTML= time;
-        });
-        socket.on('custom-event', function(data) {
-            console.log(data);
-        });
+        (function(document) {
+            var sendMessageButton = document.getElementById('send-message-btn'),
+                socket = io.connect();
+
+            socket.on('message', function(time) {
+                document.getElementById('time').innerHTML = time;
+            });
+            socket.on('custom-event', function(data) {
+                console.log(data);
+            });
+
+            sendMessageButton.addEventListener('click', function(e) {
+                socket.send('message from client');
+            });
+        })(document);
     </script>
   </body>
 </html>

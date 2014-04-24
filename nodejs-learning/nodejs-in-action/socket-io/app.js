@@ -17,4 +17,11 @@ function tick() {
 
 setInterval(tick, 1000);
 
+io.sockets.on('connection', function(socket) {
+    console.log('socket connected');
+    socket.on('message', function(message) {
+        console.log(message);
+    });
+});
+
 app.listen(3001);
