@@ -1,1 +1,0 @@
-require(["jquery","prettify","gui"],function(e,t){e(".module-container .gui-nav").guiNav(),t.prettyPrint()});

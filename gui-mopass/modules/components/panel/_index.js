@@ -1,1 +1,0 @@
-require(["jquery","prettify","gui"],function(e,t){var n=window,r=n.gui;r.browserInfo.isIE&&(r.browserInfo.version<=8&&e(".module-container .gui-table").guiTable(),r.browserInfo.version<=7&&e(".module-container .gui-panel").guiPanel()),t.prettyPrint()});

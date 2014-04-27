@@ -1,1 +1,0 @@
-require(["jquery","prettify","gui"],function(e,t){var n=window,r=n.gui;r.browserInfo.isIE&&(r.browserInfo.version<=9&&e(".gui-btn").guiButton(),r.browserInfo.version<=8&&e(".gui-callout p:last-child").css("margin-bottom",0)),e(".gui-btn-bar").guiButtonBar({selectedIndex:0}),t.prettyPrint()});

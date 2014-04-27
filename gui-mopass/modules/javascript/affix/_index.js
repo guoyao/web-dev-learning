@@ -1,1 +1,0 @@
-require(["jquery","prettify","gui"],function(e,t){e(".js-affix").guiAffix(),t.prettyPrint()});

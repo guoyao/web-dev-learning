@@ -1,1 +1,0 @@
-require(["jquery","prettify","gui"],function(e,t){e(".datepicker_demo").guiDatePicker(),e(".datepicker_demo_2").guiDatePicker({initNewDate:new Date(1980,1,1)}),t.prettyPrint()});

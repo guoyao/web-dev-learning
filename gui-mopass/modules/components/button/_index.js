@@ -1,1 +1,0 @@
-require(["jquery","prettify","gui"],function(e,t){var n=window,r=n.gui;r.browserInfo.isIE&&(r.browserInfo.version<=9&&e(".gui-btn").guiButton(),r.browserInfo.version<=8&&e(".gui-callout p:last-child").css("margin-bottom",0)),e("#loading-btn").click(function(){var t=e(this);t.guiButton("loading"),setTimeout(function(){t.guiButton("reset")},3e3)}),t.prettyPrint()});

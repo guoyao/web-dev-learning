@@ -1,1 +1,0 @@
-require(["jquery","prettify","gui"],function(e,t){e(".gui-slider").guiSlider({data:{indicatordata:["09/01","09/03","09/04","09/05","09/06","09/07","09/01","09/03","09/04","09/06","09/07","09/01","09/03"]}}),t.prettyPrint()});

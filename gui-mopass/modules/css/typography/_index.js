@@ -1,1 +1,0 @@
-require(["prettify"],function(e){e.prettyPrint()});
