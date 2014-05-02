@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="initial-scale=1, width=device-width, user-scalable=no"/>
+        <title>Responsive Layout Learning</title>
+        <style rel="stylesheet">
+            html, body {
+                margin: 0;
+                padding: 0;
+            }
+            div {
+                width: 500px;
+                height: 500px;
+                border: 1px solid red;
+                vertical-align: middle;
+                display: table-cell;
+                text-align: center;
+            }
+            div span {
+                font-size: 1rem;
+            }
+            @media screen and (max-width: 800px) {
+                div {
+                    width: 100px;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <div>
+            hello
+            <span>world</span>
+        </div>
+    </body>
+</html>
