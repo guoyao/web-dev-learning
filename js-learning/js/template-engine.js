@@ -45,12 +45,14 @@
             var funcBody = 'var result = "";',
                 func;
 
-            tmpl = tmpl.replace(/\r|\n/g, "");
+            tmpl = tmpl.replace(/\r|\n/g, "").replace(/"/g, '\\"'); //转义"号
             funcBody += ' result += "' + tmpl + '";'; 
-            funcBody = funcBody.replace(/<%=\s*([^>\s]*)\s*%>/g, function(match, $1) {
-                return '" + ' + $1 + ' + "';
+            funcBody = funcBody.replace(/<%=\s*([^>]*)\s*%>/g, function(match, $1) {
+                return '" + ' + $1.replace(/\\"/g, '"') + ' + "'; //替换的同时，恢复<%=%>中被转义的"号
             });
-            
+            funcBody = funcBody.replace(/<%\s*([^>]*)\s*%>/g, function(match, $1) {
+                return '";' + $1.replace(/\\"/g, '"') + 'result += "'; //替换的同时，恢复<%=%>中被转义的"号
+            });
 
             funcBody += " return result;";
             console.log(funcBody);
@@ -65,10 +67,20 @@
 
 
     templateRegion.innerHTML = guiTemplate.template(template, {
-        name: "guoyao",
+        name: 'guoyao',
         age: 26,
-        fn: function () {
-            return 1111;
-        }
+        gender: 'male',
+        children: [
+            {
+                name: 'child 1',
+                age: 5,
+                gender: 'female'
+            },
+            {
+                name: 'child 2',
+                age: 3,
+                gender: 'male'
+            }
+        ]
     });
 })(document);
