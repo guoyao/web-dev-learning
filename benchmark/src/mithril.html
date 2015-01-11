@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Mithril Benchmark</title>
+</head>
+<body>
+<script src="../dep/mithril/mithril.js"></script>
+<script>
+    (function (document) {
+        var vm = (function () {
+            var datasource = [];
+            for (var i = 0; i < 10000; i++) {
+                datasource[i] = {
+                    title: 'div' + i
+                };
+            }
+            return {
+                datasource: datasource
+            }
+        })();
+
+        var array = vm.datasource.map(function (item, index) {
+            return m('div', {}, 'div' + index);
+        });
+
+        var view = function () {
+            return m('div', array);
+        };
+
+        console.time('benchmark');
+//        console.profile();
+        m.render(document.body, view());
+//        console.profileEnd();
+        console.timeEnd('benchmark');
+    })(document);
+</script>
+</body>
+</html>
