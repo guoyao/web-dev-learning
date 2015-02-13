@@ -1,0 +1,6 @@
+{
+    "name": "angular-learning",
+    "dependencies": {
+        "angularjs": "~1.3.13"
+    }
+}
