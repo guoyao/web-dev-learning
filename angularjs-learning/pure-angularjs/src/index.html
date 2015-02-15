@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>AngularJS Learning</title>
+    <script src="../../dep/angularjs/angular.js"></script>
+</head>
+<body>
+<div ng-controller="ServiceController">
+    <input ng-model="user.name">
+    <h1>{{user.name}}</h1>
+</div>
+<script src="app.js"></script>
+<script src="services/userService.js"></script>
+</body>
+</html>
