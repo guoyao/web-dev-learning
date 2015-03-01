@@ -1,0 +1,8 @@
+{
+  "name": "webpack-learning",
+  "version": "0.0.1",
+  "devDependencies": {
+    "css-loader": "*",
+    "style-loader": "*"
+  }
+}
